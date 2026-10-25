@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Present Lab &mdash; Social and Economic Justice</title>
+<meta name="description" content="Locally led development, power shifting and equity models that survive contact with practice.">
+<link rel="icon" type="image/png" href="/assets/logo-mark.png">
+<meta property="og:title" content="Present Lab — Social and Economic Justice">
+<meta property="og:description" content="Locally led development, power shifting and equity models that survive contact with practice.">
+<meta property="og:image" content="https://presentlab.org/assets/logo-lockup-black.png">
+<link rel="canonical" href="https://presentlab.org/social-economic-justice/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#0A0A0A; --ink-2:#2A2823; --paper:#F3F0E7; --paper-2:#FAF8F2; --paper-3:#EDE9DE;
+  --line:#DED8C9; --line-2:#E9E4D8; --muted:#6F6A5F; --green:#00FF00;
+  --accent:#FF4D1F; --field:#180703;
+  --maxw:1240px;
+  --disp:'Archivo',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:400;pointer-events:none;
+  opacity:.055;mix-blend-mode:multiply}
+
+h1,h2,h3,h4{font-family:var(--disp);margin:0;line-height:1.02;letter-spacing:-.032em;font-weight:800}
+h1{font-size:clamp(2.5rem,6vw,4.6rem)}
+h2{font-size:clamp(1.9rem,4vw,3.1rem)}
+h3{font-size:1.22rem;line-height:1.2;letter-spacing:-.018em;font-weight:700}
+h4{font-size:1rem;letter-spacing:-.012em;font-weight:700}
+p{margin:0 0 1.05em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.wrap-n{max-width:840px;margin:0 auto;padding:0 40px}
+section{padding:104px 0}
+.label{font-family:var(--sans);font-size:.665rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 22px;display:flex;align-items:center;gap:11px}
+.label::before{content:"";width:9px;height:9px;background:var(--accent);flex:none;border-radius:50%}
+.label.plain::before{display:none}
+.lede{font-size:1.24rem;line-height:1.55;color:var(--ink-2);max-width:64ch;letter-spacing:-.006em}
+.small{font-size:.885rem;color:var(--muted)}
+mark{background:var(--green);color:var(--ink);padding:.05em .18em;border-radius:2px}
+hr.rule{border:0;height:1px;background:var(--line);margin:0}
+
+header.site{position:sticky;top:0;z-index:80;background:rgba(243,240,231,.94);
+  backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:78px}
+.brand{display:flex;align-items:center;gap:14px;flex:none}
+.brand img{height:26px;width:auto}
+.brand .pdiv{padding-left:14px;border-left:1px solid var(--line);font-family:var(--disp);
+  font-weight:700;font-size:.83rem;letter-spacing:.02em;text-transform:uppercase;line-height:1.15;
+  display:flex;align-items:center;gap:8px}
+.brand .pdot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+nav.menu{display:none;gap:1px;margin-left:auto}
+nav.menu a{font-size:.855rem;font-weight:600;color:var(--ink-2);padding:9px 12px;border-radius:5px}
+nav.menu a:hover{background:var(--paper-3);color:var(--ink)}
+@media(min-width:1080px){nav.menu{display:flex}}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+@media(min-width:1080px){.nav-right{margin-left:18px}}
+details.switch{position:relative}
+details.switch summary{list-style:none;cursor:pointer;font-size:.8rem;font-weight:700;
+  letter-spacing:.03em;color:var(--ink);border:1px solid var(--line);background:var(--paper-2);
+  padding:10px 15px;border-radius:5px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+details.switch summary::-webkit-details-marker{display:none}
+details.switch summary::after{content:"";width:6px;height:6px;border-right:1.7px solid var(--muted);
+  border-bottom:1.7px solid var(--muted);transform:rotate(45deg) translateY(-2px)}
+details.switch[open] summary{background:var(--ink);color:#fff;border-color:var(--ink)}
+details.switch[open] summary::after{border-color:#fff}
+.switch-panel{position:absolute;right:0;top:calc(100% + 9px);width:344px;background:var(--paper-2);
+  border:1px solid var(--line);box-shadow:0 22px 54px rgba(10,10,10,.16);padding:7px;z-index:90;border-radius:6px}
+.switch-panel a{display:flex;gap:12px;padding:13px;border-radius:4px;align-items:flex-start}
+.switch-panel a:hover{background:var(--paper-3)}
+.sp-dot{width:10px;height:10px;border-radius:50%;flex:none;margin-top:6px}
+.sp-name{font-family:var(--disp);font-weight:700;font-size:.9rem;letter-spacing:-.01em;line-height:1.2}
+.sp-line{font-size:.775rem;color:var(--muted);line-height:1.45;margin-top:3px}
+.sp-here{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);background:var(--green);padding:2px 6px;border-radius:2px;
+  display:inline-block;margin-top:5px}
+.switch-panel hr{border:0;height:1px;background:var(--line-2);margin:6px 4px}
+.sp-back{font-size:.8rem;font-weight:600;color:var(--muted);display:block;padding:11px 13px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;
+  font-family:var(--sans);font-weight:600;font-size:.885rem;padding:13px 22px;border-radius:4px;
+  border:1px solid var(--ink);transition:.16s;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#000}
+.btn.acc{background:var(--accent);border-color:var(--accent);color:#0A0A0A}
+.btn.acc:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--paper-3);border-color:var(--muted)}
+.btn.onfield{background:#fff;color:#0A0A0A;border-color:#fff}
+.btn.onfield:hover{background:#eae7de}
+.btn.onfield.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.34)}
+.btn.onfield.ghost:hover{background:rgba(255,255,255,.09)}
+.btn.sm{padding:10px 16px;font-size:.8rem}
+.nav-cta{display:none}
+@media(min-width:1260px){.nav-cta{display:inline-flex}}
+
+.hero{background:var(--field);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:-6%;top:-42%;width:56%;height:150%;
+  background:var(--accent);opacity:.13;filter:blur(90px);border-radius:50%}
+.hero .wrap{position:relative;padding-top:124px;padding-bottom:112px}
+.hero .label{color:rgba(255,255,255,.62)}
+.hero h1{color:#fff;max-width:15ch;margin-bottom:28px;text-transform:uppercase}
+.hero .lede{color:rgba(255,255,255,.74);max-width:58ch}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+.hero-meta{margin-top:64px;padding-top:28px;border-top:1px solid rgba(255,255,255,.16);
+  display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.hero-meta .k{font-family:var(--disp);font-weight:800;font-size:2.1rem;color:var(--accent);
+  line-height:1;letter-spacing:-.03em}
+.hero-meta .v{font-size:.735rem;color:rgba(255,255,255,.55);text-transform:uppercase;
+  letter-spacing:.15em;font-weight:600;margin-top:10px}
+
+.grid{display:grid;gap:1px;background:var(--line)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid.gap{gap:24px;background:none}
+.cell{background:var(--paper);padding:34px 32px 38px}
+.card{background:var(--paper-2);border:1px solid var(--line);padding:30px;border-radius:5px}
+.card h3{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.kick{font-size:.65rem;font-weight:700;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.kick::before{content:"";width:7px;height:7px;background:var(--accent);flex:none}
+.n-big{font-family:var(--disp);font-weight:800;font-size:.9rem;letter-spacing:.06em;
+  color:var(--ink);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.n-big::after{content:"";flex:1;height:1px;background:var(--line)}
+.band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band-3{background:var(--paper-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band-ink{background:var(--ink);color:rgba(255,255,255,.72)}
+.band-ink h2,.band-ink h3{color:#fff}
+.band-ink .label{color:rgba(255,255,255,.5)}
+.band-ink .lede{color:rgba(255,255,255,.7)}
+.pill{display:inline-block;border:1px solid var(--line);background:var(--paper-2);
+  padding:7px 14px;font-size:.78rem;font-weight:500;margin:0 7px 8px 0;border-radius:3px;color:var(--ink-2)}
+.hero .pill{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:rgba(255,255,255,.85)}
+ul.ticks{list-style:none;margin:0;padding:0}
+ul.ticks li{position:relative;padding-left:27px;margin-bottom:15px;color:var(--ink-2)}
+ul.ticks li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:10px;
+  background:var(--accent);border-radius:50%}
+ul.ticks li b{font-weight:700;color:var(--ink)}
+table.tbl{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--paper-2);
+  border:1px solid var(--line)}
+table.tbl th{background:var(--ink);color:#fff;text-align:left;font-size:.665rem;letter-spacing:.17em;
+  text-transform:uppercase;padding:15px 18px;font-weight:700}
+table.tbl td{padding:16px 18px;border-bottom:1px solid var(--line-2);vertical-align:top}
+table.tbl tr:last-child td{border-bottom:0}
+table.tbl td:first-child{font-weight:600;width:34%}
+.tbl-scroll{overflow-x:auto}
+.quote{font-family:var(--disp);font-weight:700;font-size:clamp(1.4rem,2.7vw,2.05rem);
+  line-height:1.16;letter-spacing:-.026em;border-left:5px solid var(--accent);
+  padding-left:30px;color:var(--ink);max-width:26ch}
+.band-ink .quote{color:#fff}
+.split{display:grid;gap:52px;grid-template-columns:1fr}
+@media(min-width:960px){.split{grid-template-columns:.8fr 1.2fr;gap:78px}}
+.sticky-h{position:sticky;top:120px}
+
+.cross{display:grid;gap:1px;background:rgba(255,255,255,.14);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:38px;
+  border:1px solid rgba(255,255,255,.14)}
+.cross a{display:block;padding:28px 26px 30px;background:var(--ink);transition:.2s}
+.cross a:hover{background:#161616}
+.cross .cdot{width:11px;height:11px;border-radius:50%;margin-bottom:18px}
+.cross .ct{font-family:var(--disp);font-weight:800;font-size:1.08rem;color:#fff;line-height:1.14;
+  letter-spacing:-.02em;text-transform:uppercase;margin-bottom:10px;min-height:2.3em}
+.cross .cd{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.5}
+.cross .go{margin-top:18px;font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:#fff}
+
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:80px 0 40px;font-size:.885rem}
+footer.site h4{font-family:var(--sans);font-size:.655rem;font-weight:700;letter-spacing:.19em;
+  text-transform:uppercase;color:rgba(255,255,255,.38);margin:0 0 17px}
+footer.site a:hover{color:#fff}
+.foot-grid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.foot-grid li{margin-bottom:10px}
+.foot-brand img{height:30px;margin-bottom:16px}
+.foot-brand p{max-width:29ch;font-size:.86rem;line-height:1.6}
+.foot-bottom{margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:.78rem;
+  color:rgba(255,255,255,.36)}
+
+.proto{position:fixed;left:0;bottom:0;z-index:410;background:var(--ink);color:#fff;
+  font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.04em;padding:9px 15px;
+  border-top-right-radius:5px}
+.proto a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){
+  section{padding:68px 0}
+  .wrap,.wrap-n{padding:0 22px}
+  .hero .wrap{padding-top:80px;padding-bottom:76px}
+  .split{gap:38px}
+  .proto{font-size:.64rem;padding:7px 11px}
+}
+</style>
+</head>
+<body>
+<svg class="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><filter id="pg"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#pg)"/></svg>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="/">
+    <img src="/assets/logo-lockup-black.png" alt="Present Lab">
+    <span class="pdiv"><span class="pdot"></span>Social &amp; Economic Justice</span>
+  </a>
+  <nav class="menu">
+    <a href="#practice">Practice</a><a href="#offer">What we do</a>
+    <a href="#method">Method</a><a href="#proof">Evidence</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-right"><details class="switch"><summary>Practices</summary><div class="switch-panel"><a href="/ai-digital/"><span class="sp-dot" style="background:#4D5DFF"></span><span><span class="sp-name">AI and Digital Transformation</span><div class="sp-line">Digital readiness, AI capability and institutional transformation that shifts who can act.</div></span></a><a href="/health-security/"><span class="sp-dot" style="background:#00FF00"></span><span><span class="sp-name">Health Security and Biosecurity</span><div class="sp-line">Border health, biosecurity and public-health emergency systems, built to IHR (2005).</div></span></a><a href="/social-economic-justice/"><span class="sp-dot" style="background:#FF4D1F"></span><span><span class="sp-name">Social and Economic Justice</span><span class="sp-here">You are here</span></span></a><a href="/philanthropy/"><span class="sp-dot" style="background:#A855F7"></span><span><span class="sp-name">Philanthropy Advisory</span><div class="sp-line">Research and advisory on how philanthropic power is held, moved, and spent.</div></span></a><hr><a class="sp-back" href="/">&larr; Back to entry</a></div></details>
+    <a class="btn sm nav-cta" href="#contact">Start a conversation</a></div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="label">Practice III &mdash; Social and Economic Justice</p>
+  <h1>Power shifts in practice, or not at all.</h1>
+  <p class="lede">Societies function through inequitable and exclusive structures that produce a growing
+  population of oppressed and minoritised people. We work with the organisations trying to change that
+  &mdash; on the operational mechanics, not the declarations.</p>
+  <div class="hero-actions">
+    <a class="btn onfield" href="#offer">Explore the practice</a>
+    <a class="btn onfield ghost" href="#contact">Start a conversation</a>
+  </div>
+  <div class="hero-meta">
+    <div><div class="k">4</div><div class="v">Phase co-design journey</div></div>
+    <div><div class="k">LLL</div><div class="v">Local Leadership Labs</div></div>
+    <div><div class="k">HCD</div><div class="v">Human-centred by method</div></div>
+    <div><div class="k">100+</div><div class="v">Expert network</div></div>
+  </div>
+</div></section>
+
+<section id="practice"><div class="wrap"><div class="split">
+  <div><div class="sticky-h"><p class="label">The practice</p>
+    <h2 style="text-transform:uppercase;max-width:12ch">Power, not participation</h2></div></div>
+  <div>
+    <p class="lede" style="margin-bottom:34px">We work with communities, movements, civil society
+    organisations, intermediaries, journalists, academics, businesses, governments and international
+    agencies to amplify alternative and new forms of power.</p>
+    <p style="margin-bottom:32px">That means retiring regressive humanitarian terminology, moving past
+    checkbox diversity, and treating structural power imbalance as <mark>the design problem</mark> rather
+    than a sensitivity to be managed. It also means being specific: locally led development fails when
+    &lsquo;local&rsquo; is reduced to nationality in ways that privilege elites, or when funds are routed
+    through intermediaries in ways that outsource power rather than shift it.</p>
+    <p class="label plain" style="margin-bottom:14px">Who we work with</p>
+    <span class="pill">Civil society organisations</span>
+    <span class="pill">Community groups &amp; movements</span>
+    <span class="pill">Intermediaries &amp; ecosystem actors</span>
+    <span class="pill">Regional human-rights institutions</span>
+    <span class="pill">Government actors</span>
+    <span class="pill">Journalists &amp; academics</span>
+  </div>
+</div></div></section>
+
+<section class="band"><div class="wrap">
+  <p class="label">Scope of service</p>
+  <h2 style="text-transform:uppercase;max-width:18ch;margin-bottom:52px">Three ways we come at a problem</h2>
+  <div class="grid g3">
+    <div class="cell"><div class="n-big">01</div><h3>Design strategies</h3>
+      <p>Navigating contextual realities, systemic constraints, needs assessment and power dynamics &mdash;
+      daunting, and essential for building societies that work for more of us.</p></div>
+    <div class="cell"><div class="n-big">02</div><h3>Change analysis</h3>
+      <p>There is no one size that fits all. Systems are dynamic, interconnected and constantly changing in
+      ways that require reimagining the paradigms we brought with us.</p></div>
+    <div class="cell"><div class="n-big">03</div><h3>Sensemaking &amp; learning</h3>
+      <p>More information is being produced to improve the odds of transforming complex 21st-century
+      systems &mdash; but ambiguity, uncertainty and complexity are rising alongside it.</p></div>
+  </div>
+</div></section>
+
+<section id="offer"><div class="wrap">
+  <p class="label">What we do</p>
+  <h2 style="text-transform:uppercase;max-width:14ch;margin-bottom:52px">Four lines of work</h2>
+  <div class="grid g2">
+    <div class="cell"><div class="n-big">01</div><h3>Locally led development</h3>
+      <p>Co-design and prototyping with civil society organisations, communities and ecosystem actors
+      through the Local Leadership Labs &mdash; surfacing local priorities, testing new ways of working,
+      and challenging the political, technical and behavioural barriers that stop local civil society being
+      recognised, enabled and resourced as key development actors.</p></div>
+    <div class="cell"><div class="n-big">02</div><h3>The Equity DNA Playbook</h3>
+      <p>A framework built to move organisations beyond checkbox diversity toward addressing the structural
+      power imbalances that produce the outcomes they say they want to change.</p></div>
+    <div class="cell"><div class="n-big">03</div><h3>Power &amp; localisation research</h3>
+      <p>Research-driven advocacy on shifting power to local actors &mdash; including the uncomfortable
+      questions about what funders give up, and where localisation risks reproducing the hierarchies it
+      claims to dismantle.</p></div>
+    <div class="cell"><div class="n-big">04</div><h3>Facilitation in hard rooms</h3>
+      <p>Inclusive, trauma-informed and low-literacy facilitation for multi-stakeholder processes &mdash;
+      designed for the realities of working with diverse communities in constrained environments, rather
+      than applied as a fixed recipe.</p></div>
+  </div>
+</div></section>
+
+<section class="band-3" id="method"><div class="wrap">
+  <p class="label">Signature method</p>
+  <h2 style="text-transform:uppercase;max-width:20ch;margin-bottom:18px">The co-design and prototyping
+  journey</h2>
+  <p class="lede" style="margin-bottom:48px">A four-phase journey, usable end-to-end for multi-day labs or
+  modularly inside a strategy session, community dialogue or programme design process.</p>
+  <div class="grid g2 gap">
+    <div class="card"><div class="kick">Phase 1</div><h3>Problem discovery</h3>
+      <p>Surface and unpack the real issues underneath visible symptoms. Problem mapping, problem
+      statements, stakeholder mapping, causal layered analysis, How Might We statements &mdash; moving from
+      generic problems to a shared, context-specific understanding of what is at stake and for whom.</p></div>
+    <div class="card"><div class="kick">Phase 2</div><h3>Problem definition</h3>
+      <p>Narrow the focus and decide which part of the system to work on first. 10x10 brainstorming, user
+      personas, user journeys &mdash; clarifying target users, lived experience and priority leverage
+      points.</p></div>
+    <div class="card"><div class="kick">Phase 3</div><h3>Designing solutions</h3>
+      <p>Create early-stage solutions that can be tested quickly and cheaply. Prototyping techniques,
+      assumption mapping, prototype storyboards &mdash; surfacing what must be true for an idea to work, and
+      designing prototypes local actors can realistically own.</p></div>
+    <div class="card"><div class="kick">Phase 4</div><h3>Testing solutions</h3>
+      <p>Stress-test prototypes in real or simulated conditions and generate usable learning. Role-playing
+      and experiment design, supporting structured feedback and a decision to adapt, scale or stop.</p></div>
+  </div>
+  <div class="quote" style="margin-top:56px">Design with, not for. Adapt the tools to local realities,
+  capacities and power dynamics &mdash; never as a fixed recipe.</div>
+</div></section>
+
+<section id="proof"><div class="wrap">
+  <p class="label">Evidence &amp; publications</p>
+  <h2 style="text-transform:uppercase;max-width:16ch;margin-bottom:48px">Where the work has run</h2>
+  <div class="grid g2 gap" style="margin-bottom:44px">
+    <div class="card"><div class="kick">Publication &middot; December 2025</div>
+      <h3>Locally Led Development in Civil Society</h3>
+      <p>A co-design and prototyping toolkit created for the Local Leadership Labs &mdash; a practical
+      resource for civil society organisations, community groups, intermediaries, funders and government
+      actors advancing locally led development.</p>
+      <p class="small" style="margin-top:14px">Nonso Jideofor, Nithima Ducrocq and Amalee Nsour &middot;
+      Brave Village</p></div>
+    <div class="card"><div class="kick">Framework</div><h3>Equity DNA Playbook</h3>
+      <p>Present Lab&rsquo;s framework for moving organisations past checkbox diversity into the structural
+      questions &mdash; budgets, hiring, decision rights and who sets the agenda.</p>
+      <p class="small" style="margin-top:14px">In development for publication</p></div>
+  </div>
+  <div class="tbl-scroll"><table class="tbl">
+    <thead><tr><th>Country</th><th>Project</th><th>Partners</th></tr></thead>
+    <tbody>
+      <tr><td>Multi-country</td><td>Local Leadership Labs &mdash; discovery, co-design and prototyping with
+        civil society and ecosystem actors</td><td>Brave Village</td></tr>
+      <tr><td>Nigeria</td><td>Equity DNA and localisation research &mdash; advocacy for shifting funding and
+        decision power to local actors</td><td>Civil society partners</td></tr>
+      <tr><td>The Gambia</td><td>Human-rights institutional strengthening alongside the ACHPR
+        engagement</td><td>EPD, ACHPR</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="band"><div class="wrap"><div class="split">
+  <div><div class="sticky-h"><p class="label">How we hold ourselves</p>
+    <h2 style="text-transform:uppercase;max-width:13ch">Values that constrain the work</h2></div></div>
+  <div><div class="grid g2 gap">
+    <div class="card"><h3>Local agency &amp; power</h3><p>We amplify local agency and new forms of power,
+      retiring regressive humanitarian terminology in favour of equity-centred models.</p></div>
+    <div class="card"><h3>Bias for evidence</h3><p>We move past the theatre of development toward
+      interventions rooted in implementation science and rigorous evaluation.</p></div>
+    <div class="card"><h3>Future-facing rigor</h3><p>Contextual depth paired with strategic foresight
+      &mdash; designing for second- and third-order consequences.</p></div>
+    <div class="card"><h3>Psychological safety</h3><p>An internal culture modelled on Amy Edmondson&rsquo;s
+      research, which encourages error-reporting and continuous learning.</p></div>
+  </div></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap-n" style="text-align:center">
+  <p class="label" style="justify-content:center">Work with this practice</p>
+  <h2 style="text-transform:uppercase;margin-bottom:22px">Bring us the problem you can&rsquo;t name yet</h2>
+  <p class="lede" style="margin:0 auto 36px">Most engagements begin with problem discovery &mdash; before
+  anyone commits to what the intervention is.</p>
+  <a class="btn" href="#contact">Request a scoping call</a>
+  <a class="btn ghost" href="#contact">Download the co-design toolkit</a>
+</div></section>
+
+<section class="band-ink"><div class="wrap">
+  <p class="label">Elsewhere at Present Lab</p>
+  <h2 style="max-width:15ch;text-transform:uppercase">Four practices. One method.</h2>
+  <p class="lede" style="margin-top:20px">Each practice runs its own team, partners and body of evidence
+  &mdash; sharing only the studio&rsquo;s methodological spine.</p>
+  <div class="cross"><a href="/ai-digital/"><div class="cdot" style="background:#4D5DFF"></div><div class="ct">AI and Digital Transformation</div><div class="cd">Digital readiness, AI capability and institutional transformation that shifts who can act.</div><div class="go">Enter &rarr;</div></a><a href="/health-security/"><div class="cdot" style="background:#00FF00"></div><div class="ct">Health Security and Biosecurity</div><div class="cd">Border health, biosecurity and public-health emergency systems, built to IHR (2005).</div><div class="go">Enter &rarr;</div></a><a href="/philanthropy/"><div class="cdot" style="background:#A855F7"></div><div class="ct">Philanthropy Advisory</div><div class="cd">Research and advisory on how philanthropic power is held, moved, and spent.</div><div class="go">Enter &rarr;</div></a></div>
+</div></section>
+<footer class="site"><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <img src="/assets/logo-lockup-white.png" alt="Present Lab">
+      <p>An evidence-led design studio. Building a world that works for more of us.</p>
+      <p class="small" style="color:rgba(255,255,255,.4);margin-top:16px">presentlab.org/social-economic-justice</p>
+    </div>
+    <div><h4>This practice</h4><ul>
+      <li><a href="#practice">The practice</a></li><li><a href="#offer">What we do</a></li>
+      <li><a href="#method">Method</a></li><li><a href="#proof">Evidence</a></li>
+      <li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Practices</h4><ul>
+      <li><a href="/ai-digital/">AI and Digital Transformation</a></li><li><a href="/health-security/">Health Security and Biosecurity</a></li><li><a href="/social-economic-justice/">Social and Economic Justice</a></li><li><a href="/philanthropy/">Philanthropy Advisory</a></li>
+      </ul></div>
+    <div><h4>Studio</h4><ul>
+      <li><a href="/">Entry page</a></li>
+      <li><a href="mailto:info@presentlab.org">info@presentlab.org</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Present Lab. Registered health research &amp; social-justice consulting institution.</span>
+    <span>+234 818 332 7178 &middot; info@presentlab.org</span>
+  </div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Old prototype file names and bare paths resolve to the real pages
+[[redirects]]
+  from = "/ai-digital"
+  to = "/ai-digital/"
+  status = 301
+[[redirects]]
+  from = "/health-security"
+  to = "/health-security/"
+  status = 301
+[[redirects]]
+  from = "/social-economic-justice"
+  to = "/social-economic-justice/"
+  status = 301
+[[redirects]]
+  from = "/philanthropy"
+  to = "/philanthropy/"
+  status = 301

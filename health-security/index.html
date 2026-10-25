@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Present Lab &mdash; Health Security and Biosecurity</title>
+<meta name="description" content="Preparedness, response and points-of-entry capacity for governments, border health authorities and multilateral bodies. We assess what is in place, fix the gaps that matter most, and test that the fixes work.">
+<link rel="icon" type="image/png" href="/assets/logo-mark.png">
+<meta property="og:title" content="Present Lab — Health Security and Biosecurity">
+<meta property="og:description" content="Preparedness, response and points-of-entry capacity for governments, border health authorities and multilateral bodies. We assess what is in place, fix the gaps that matter most, and test that the fixes work.">
+<meta property="og:image" content="https://presentlab.org/assets/logo-lockup-black.png">
+<link rel="canonical" href="https://presentlab.org/health-security/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#0A0A0A; --ink-2:#2A2823; --paper:#F3F0E7; --paper-2:#FAF8F2; --paper-3:#EDE9DE;
+  --line:#DED8C9; --line-2:#E9E4D8; --muted:#6F6A5F; --green:#00FF00;
+  --accent:#00FF00; --field:#06120A;
+  --maxw:1240px;
+  --disp:'Archivo',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:400;pointer-events:none;
+  opacity:.055;mix-blend-mode:multiply}
+
+h1,h2,h3,h4{font-family:var(--disp);margin:0;line-height:1.02;letter-spacing:-.032em;font-weight:800}
+h1{font-size:clamp(2.5rem,6vw,4.6rem)}
+h2{font-size:clamp(1.9rem,4vw,3.1rem)}
+h3{font-size:1.22rem;line-height:1.2;letter-spacing:-.018em;font-weight:700}
+h4{font-size:1rem;letter-spacing:-.012em;font-weight:700}
+p{margin:0 0 1.05em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.wrap-n{max-width:840px;margin:0 auto;padding:0 40px}
+section{padding:104px 0}
+.label{font-family:var(--sans);font-size:.665rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 22px;display:flex;align-items:center;gap:11px}
+.label::before{content:"";width:9px;height:9px;background:var(--accent);flex:none;border-radius:50%}
+.label.plain::before{display:none}
+.lede{font-size:1.24rem;line-height:1.55;color:var(--ink-2);max-width:64ch;letter-spacing:-.006em}
+.small{font-size:.885rem;color:var(--muted)}
+mark{background:var(--green);color:var(--ink);padding:.05em .18em;border-radius:2px}
+hr.rule{border:0;height:1px;background:var(--line);margin:0}
+
+header.site{position:sticky;top:0;z-index:80;background:rgba(243,240,231,.94);
+  backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:78px}
+.brand{display:flex;align-items:center;gap:14px;flex:none}
+.brand img{height:26px;width:auto}
+.brand .pdiv{padding-left:14px;border-left:1px solid var(--line);font-family:var(--disp);
+  font-weight:700;font-size:.83rem;letter-spacing:.02em;text-transform:uppercase;line-height:1.15;
+  display:flex;align-items:center;gap:8px}
+.brand .pdot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+nav.menu{display:none;gap:1px;margin-left:auto}
+nav.menu a{font-size:.855rem;font-weight:600;color:var(--ink-2);padding:9px 12px;border-radius:5px}
+nav.menu a:hover{background:var(--paper-3);color:var(--ink)}
+@media(min-width:1080px){nav.menu{display:flex}}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+@media(min-width:1080px){.nav-right{margin-left:18px}}
+details.switch{position:relative}
+details.switch summary{list-style:none;cursor:pointer;font-size:.8rem;font-weight:700;
+  letter-spacing:.03em;color:var(--ink);border:1px solid var(--line);background:var(--paper-2);
+  padding:10px 15px;border-radius:5px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+details.switch summary::-webkit-details-marker{display:none}
+details.switch summary::after{content:"";width:6px;height:6px;border-right:1.7px solid var(--muted);
+  border-bottom:1.7px solid var(--muted);transform:rotate(45deg) translateY(-2px)}
+details.switch[open] summary{background:var(--ink);color:#fff;border-color:var(--ink)}
+details.switch[open] summary::after{border-color:#fff}
+.switch-panel{position:absolute;right:0;top:calc(100% + 9px);width:344px;background:var(--paper-2);
+  border:1px solid var(--line);box-shadow:0 22px 54px rgba(10,10,10,.16);padding:7px;z-index:90;border-radius:6px}
+.switch-panel a{display:flex;gap:12px;padding:13px;border-radius:4px;align-items:flex-start}
+.switch-panel a:hover{background:var(--paper-3)}
+.sp-dot{width:10px;height:10px;border-radius:50%;flex:none;margin-top:6px}
+.sp-name{font-family:var(--disp);font-weight:700;font-size:.9rem;letter-spacing:-.01em;line-height:1.2}
+.sp-line{font-size:.775rem;color:var(--muted);line-height:1.45;margin-top:3px}
+.sp-here{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);background:var(--green);padding:2px 6px;border-radius:2px;
+  display:inline-block;margin-top:5px}
+.switch-panel hr{border:0;height:1px;background:var(--line-2);margin:6px 4px}
+.sp-back{font-size:.8rem;font-weight:600;color:var(--muted);display:block;padding:11px 13px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;
+  font-family:var(--sans);font-weight:600;font-size:.885rem;padding:13px 22px;border-radius:4px;
+  border:1px solid var(--ink);transition:.16s;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#000}
+.btn.acc{background:var(--accent);border-color:var(--accent);color:#0A0A0A}
+.btn.acc:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--paper-3);border-color:var(--muted)}
+.btn.onfield{background:#fff;color:#0A0A0A;border-color:#fff}
+.btn.onfield:hover{background:#eae7de}
+.btn.onfield.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.34)}
+.btn.onfield.ghost:hover{background:rgba(255,255,255,.09)}
+.btn.sm{padding:10px 16px;font-size:.8rem}
+.nav-cta{display:none}
+@media(min-width:1260px){.nav-cta{display:inline-flex}}
+
+.hero{background:var(--field);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:-6%;top:-42%;width:56%;height:150%;
+  background:var(--accent);opacity:.13;filter:blur(90px);border-radius:50%}
+.hero .wrap{position:relative;padding-top:124px;padding-bottom:112px}
+.hero .label{color:rgba(255,255,255,.62)}
+.hero h1{color:#fff;max-width:15ch;margin-bottom:28px;text-transform:uppercase}
+.hero .lede{color:rgba(255,255,255,.74);max-width:58ch}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+.hero-meta{margin-top:64px;padding-top:28px;border-top:1px solid rgba(255,255,255,.16);
+  display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.hero-meta .k{font-family:var(--disp);font-weight:800;font-size:2.1rem;color:var(--accent);
+  line-height:1;letter-spacing:-.03em}
+.hero-meta .v{font-size:.735rem;color:rgba(255,255,255,.55);text-transform:uppercase;
+  letter-spacing:.15em;font-weight:600;margin-top:10px}
+
+.grid{display:grid;gap:1px;background:var(--line)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid.gap{gap:24px;background:none}
+.cell{background:var(--paper);padding:34px 32px 38px}
+.card{background:var(--paper-2);border:1px solid var(--line);padding:30px;border-radius:5px}
+.card h3{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.kick{font-size:.65rem;font-weight:700;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.kick::before{content:"";width:7px;height:7px;background:var(--accent);flex:none}
+.n-big{font-family:var(--disp);font-weight:800;font-size:.9rem;letter-spacing:.06em;
+  color:var(--ink);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.n-big::after{content:"";flex:1;height:1px;background:var(--line)}
+.band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band-3{background:var(--paper-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band-ink{background:var(--ink);color:rgba(255,255,255,.72)}
+.band-ink h2,.band-ink h3{color:#fff}
+.band-ink .label{color:rgba(255,255,255,.5)}
+.band-ink .lede{color:rgba(255,255,255,.7)}
+.pill{display:inline-block;border:1px solid var(--line);background:var(--paper-2);
+  padding:7px 14px;font-size:.78rem;font-weight:500;margin:0 7px 8px 0;border-radius:3px;color:var(--ink-2)}
+.hero .pill{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:rgba(255,255,255,.85)}
+ul.ticks{list-style:none;margin:0;padding:0}
+ul.ticks li{position:relative;padding-left:27px;margin-bottom:15px;color:var(--ink-2)}
+ul.ticks li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:10px;
+  background:var(--accent);border-radius:50%}
+ul.ticks li b{font-weight:700;color:var(--ink)}
+table.tbl{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--paper-2);
+  border:1px solid var(--line)}
+table.tbl th{background:var(--ink);color:#fff;text-align:left;font-size:.665rem;letter-spacing:.17em;
+  text-transform:uppercase;padding:15px 18px;font-weight:700}
+table.tbl td{padding:16px 18px;border-bottom:1px solid var(--line-2);vertical-align:top}
+table.tbl tr:last-child td{border-bottom:0}
+table.tbl td:first-child{font-weight:600;width:34%}
+.tbl-scroll{overflow-x:auto}
+.quote{font-family:var(--disp);font-weight:700;font-size:clamp(1.4rem,2.7vw,2.05rem);
+  line-height:1.16;letter-spacing:-.026em;border-left:5px solid var(--accent);
+  padding-left:30px;color:var(--ink);max-width:26ch}
+.band-ink .quote{color:#fff}
+.split{display:grid;gap:52px;grid-template-columns:1fr}
+@media(min-width:960px){.split{grid-template-columns:.8fr 1.2fr;gap:78px}}
+.sticky-h{position:sticky;top:120px}
+
+.cross{display:grid;gap:1px;background:rgba(255,255,255,.14);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:38px;
+  border:1px solid rgba(255,255,255,.14)}
+.cross a{display:block;padding:28px 26px 30px;background:var(--ink);transition:.2s}
+.cross a:hover{background:#161616}
+.cross .cdot{width:11px;height:11px;border-radius:50%;margin-bottom:18px}
+.cross .ct{font-family:var(--disp);font-weight:800;font-size:1.08rem;color:#fff;line-height:1.14;
+  letter-spacing:-.02em;text-transform:uppercase;margin-bottom:10px;min-height:2.3em}
+.cross .cd{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.5}
+.cross .go{margin-top:18px;font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:#fff}
+
+footer.site{background:var(--ink);color:rgba(255,255,255,.6);padding:80px 0 40px;font-size:.885rem}
+footer.site h4{font-family:var(--sans);font-size:.655rem;font-weight:700;letter-spacing:.19em;
+  text-transform:uppercase;color:rgba(255,255,255,.38);margin:0 0 17px}
+footer.site a:hover{color:#fff}
+.foot-grid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.foot-grid li{margin-bottom:10px}
+.foot-brand img{height:30px;margin-bottom:16px}
+.foot-brand p{max-width:29ch;font-size:.86rem;line-height:1.6}
+.foot-bottom{margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:.78rem;
+  color:rgba(255,255,255,.36)}
+
+.proto{position:fixed;left:0;bottom:0;z-index:410;background:var(--ink);color:#fff;
+  font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.04em;padding:9px 15px;
+  border-top-right-radius:5px}
+.proto a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){
+  section{padding:68px 0}
+  .wrap,.wrap-n{padding:0 22px}
+  .hero .wrap{padding-top:80px;padding-bottom:76px}
+  .split{gap:38px}
+  .proto{font-size:.64rem;padding:7px 11px}
+}
+table.tbl.work td:first-child{width:auto;white-space:nowrap;font-weight:600}
+table.tbl.work td:nth-child(2){width:40%}
+@media(min-width:1000px){#offer .grid.g3{grid-template-columns:repeat(3,1fr)}}
+.steps{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.steps .cell{padding:30px 26px 32px}
+.steps p{margin:0;font-size:.95rem;color:var(--ink-2)}
+</style>
+</head>
+<body>
+<svg class="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><filter id="pg"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#pg)"/></svg>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="/">
+    <img src="/assets/logo-lockup-black.png" alt="Present Lab">
+    <span class="pdiv"><span class="pdot"></span>Health Security</span>
+  </a>
+  <nav class="menu">
+    <a href="#offer">What we do</a><a href="#method">Method</a>
+    <a href="#work">Selected work</a><a href="#contact">Work with us</a>
+  </nav>
+  <div class="nav-right"><details class="switch"><summary>Practices</summary><div class="switch-panel"><a href="/ai-digital/"><span class="sp-dot" style="background:#4D5DFF"></span><span><span class="sp-name">AI and Digital Transformation</span><div class="sp-line">Digital readiness, AI capability and institutional transformation that shifts who can act.</div></span></a><a href="/health-security/"><span class="sp-dot" style="background:#00FF00"></span><span><span class="sp-name">Health Security and Biosecurity</span><span class="sp-here">You are here</span></span></a><a href="/social-economic-justice/"><span class="sp-dot" style="background:#FF4D1F"></span><span><span class="sp-name">Social and Economic Justice</span><div class="sp-line">Locally led development, power shifting and equity models that survive contact with practice.</div></span></a><a href="/philanthropy/"><span class="sp-dot" style="background:#A855F7"></span><span><span class="sp-name">Philanthropy Advisory</span><div class="sp-line">Research and advisory on how philanthropic power is held, moved, and spent.</div></span></a><hr><a class="sp-back" href="/">&larr; Back to entry</a></div></details>
+    <a class="btn sm nav-cta" href="mailto:info@presentlab.org?subject=Health%20security%20assignment">Discuss an assignment</a></div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="label">Practice 02 &mdash; Health Security and Biosecurity</p>
+  <h1>Commitments are easy. Capacity has to work on the day.</h1>
+  <p class="lede">We support governments, border health authorities, security agencies and multilateral
+  bodies to prepare for, detect and respond to health emergencies, with particular depth at airports,
+  seaports and land crossings. We assess what is in place, help fix the gaps that matter most, and test
+  that the fixes work.</p>
+  <div class="hero-actions">
+    <a class="btn onfield" href="mailto:info@presentlab.org?subject=Health%20security%20assignment">Discuss an assignment</a>
+    <a class="btn onfield ghost" href="#work">See selected work &darr;</a>
+  </div>
+</div></section>
+
+<section class="band" id="offer"><div class="wrap">
+  <p class="label">What we do</p>
+  <h2 style="text-transform:uppercase;max-width:14ch;margin-bottom:18px">Six lines of work</h2>
+  <p class="lede" style="margin-bottom:52px">Commissioned separately or sequenced into a multi-year
+  programme.</p>
+  <div class="grid g3">
+    <div class="cell"><div class="n-big">01</div><h3>Preparedness assessment</h3>
+      <p>Rapid and full assessments of points of entry and national capacities against the IHR (2005):
+      scored findings, the evidence behind each score, and a prioritised action list.</p></div>
+    <div class="cell"><div class="n-big">02</div><h3>Emergency response</h3>
+      <p>Support to authorities during an outbreak: incident action plans for points of entry, operational
+      protocols, job aids, traveller messaging and short readiness checks, working within the national
+      incident structure.</p></div>
+    <div class="cell"><div class="n-big">03</div><h3>Points-of-entry capacity</h3>
+      <p>Cross-sector facilitation, training with supervised practice and competency checks, contingency
+      plans, procedures at the point of use, simulation exercises, and ship sanitation certification.</p></div>
+    <div class="cell"><div class="n-big">04</div><h3>Biosecurity and multisector coordination</h3>
+      <p>Biorisk management and coordination between health, security and defence agencies, tested through
+      tabletop and functional exercises.</p></div>
+    <div class="cell"><div class="n-big">05</div><h3>Policy and institutional reform</h3>
+      <p>Putting the amended IHR and the WHO Pandemic Agreement into practice: legal and governance
+      instruments, service standards, and the institutions that deliver them.</p></div>
+    <div class="cell"><div class="n-big">06</div><h3>Surveillance, cross-border cooperation and financing</h3>
+      <p>Linking points of entry to national surveillance, information sharing between neighbouring
+      countries, and costed programmes with clear ownership &mdash; including the financing, market
+      decisions and last-mile logistics for medical countermeasures during public health emergencies.</p></div>
+  </div>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <p class="label">One method</p>
+  <h2 style="text-transform:uppercase;max-width:16ch;margin-bottom:18px">Evidence into action. Capability that lasts.</h2>
+  <p class="lede" style="margin-bottom:46px">Five steps, in order. Each one produces something the
+  institution keeps.</p>
+  <div class="grid g3 steps">
+    <div class="cell"><div class="n-big">Understand</div>
+      <p>What is in place, what the evidence shows, and which gaps matter most.</p></div>
+    <div class="cell"><div class="n-big">Design</div>
+      <p>Fixes sized to the institution that has to run them.</p></div>
+    <div class="cell"><div class="n-big">Test</div>
+      <p>Exercises and readiness checks before anything is relied on.</p></div>
+    <div class="cell"><div class="n-big">Embed</div>
+      <p>Procedures, training and ownership inside the institution, not alongside it.</p></div>
+    <div class="cell"><div class="n-big">Review</div>
+      <p>Re-assess on a set date, and measure only what the evidence can support.</p></div>
+  </div>
+</div></section>
+
+<section class="band-3" id="work"><div class="wrap">
+  <p class="label">Selected work</p>
+  <h2 style="text-transform:uppercase;max-width:14ch;margin-bottom:46px">Where the work has run</h2>
+  <div class="tbl-scroll"><table class="tbl work">
+    <thead><tr><th>Year</th><th>Work</th><th>Our role</th></tr></thead>
+    <tbody>
+      <tr><td>2026</td><td>Rapid preparedness assessment and refresher training at five international
+        airports, Nigeria</td><td>Technical support to the Port Health Services Division assessment team,
+        Federal Ministry of Health and Social Welfare</td></tr>
+      <tr><td>2026</td><td>Maritime port health procedures: revised SOPs and a simplified public-facing
+        SOP</td><td>Drafting and review, connected to the Maritime Anti-Corruption Network; approval rests
+        with the Ministry</td></tr>
+      <tr><td>2026</td><td>Ship sanitation certification: a phased programme led by Port Health
+        Services</td><td>Feasibility study; implementation proposed, funding not yet secured</td></tr>
+      <tr><td>2023</td><td>Tabletop exercise on biological and chemical emergencies at points of entry,
+        Abuja</td><td>Evaluator; convened by Port Health Services and the Office of the National Security
+        Adviser</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small" style="margin-top:22px">Findings and procedures belong to the institutions we support.
+  We publish them only with their agreement.</p>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <p class="label">Work with us</p>
+  <h2 style="text-transform:uppercase;max-width:14ch;margin-bottom:46px">Three ways in</h2>
+  <div class="grid g3 gap">
+    <div class="card"><div class="kick">Commission</div><h3>Commission an assignment</h3>
+      <p>An assessment, exercise, policy review, protocol or feasibility study, with an agreed question,
+      scope and outputs. For points of entry we offer a facilitated rapid diagnostic, a four-to-six-week
+      preparedness sprint on priority gaps, a remote readiness check during an outbreak, and follow-up
+      verification.</p></div>
+    <div class="card"><div class="kick">Fund</div><h3>Fund a programme</h3>
+      <p>Programmes with defined priorities, institutional ownership and a plan for measuring change.</p></div>
+    <div class="card"><div class="kick">Deliver</div><h3>Deliver with us</h3>
+      <p>Joint proposals and delivery partnerships with clear roles and accountability.</p></div>
+  </div>
+  <div class="split" style="margin-top:72px;padding-top:56px;border-top:1px solid var(--line)">
+    <div><div class="sticky-h"><p class="label">Practice lead</p>
+      <h2 style="text-transform:uppercase;max-width:11ch">Who runs this practice</h2></div></div>
+    <div class="card"><div class="kick">Managing Director</div>
+      <h3 style="font-size:1.5rem">Olaoluwa Akinloluwa</h3>
+      <p class="small" style="margin-bottom:18px">Managing Director and Lead, Policy and Health Security</p>
+      <p>Olaoluwa works on health security, pandemic preparedness and medical countermeasures, with
+      experience in point-of-entry readiness and coordination between public health and security agencies.</p>
+      <a class="btn" href="mailto:info@presentlab.org?subject=Health%20security%20assignment">info@presentlab.org &nearr;</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="band-ink"><div class="wrap">
+  <p class="label">Elsewhere at Present Lab</p>
+  <h2 style="max-width:15ch;text-transform:uppercase">Four practices. One method.</h2>
+  <p class="lede" style="margin-top:20px">Each practice runs its own team, partners and body of evidence
+  &mdash; sharing only the studio&rsquo;s methodological spine.</p>
+  <div class="cross"><a href="/ai-digital/"><div class="cdot" style="background:#4D5DFF"></div><div class="ct">AI and Digital Transformation</div><div class="cd">Digital readiness, AI capability and institutional transformation that shifts who can act.</div><div class="go">Enter &rarr;</div></a><a href="/social-economic-justice/"><div class="cdot" style="background:#FF4D1F"></div><div class="ct">Social and Economic Justice</div><div class="cd">Locally led development, power shifting and equity models that survive contact with practice.</div><div class="go">Enter &rarr;</div></a><a href="/philanthropy/"><div class="cdot" style="background:#A855F7"></div><div class="ct">Philanthropy Advisory</div><div class="cd">Research and advisory on how philanthropic power is held, moved, and spent.</div><div class="go">Enter &rarr;</div></a></div>
+</div></section>
+<footer class="site"><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <img src="/assets/logo-lockup-white.png" alt="Present Lab">
+      <p>An evidence-led design studio. Building a world that works for more of us.</p>
+      <p class="small" style="color:rgba(255,255,255,.4);margin-top:16px">presentlab.org/health-security</p>
+    </div>
+    <div><h4>This practice</h4><ul>
+      <li><a href="#offer">What we do</a></li><li><a href="#method">Method</a></li>
+      <li><a href="#work">Selected work</a></li>
+      <li><a href="#contact">Work with us</a></li></ul></div>
+    <div><h4>Practices</h4><ul>
+      <li><a href="/ai-digital/">AI and Digital Transformation</a></li><li><a href="/health-security/">Health Security and Biosecurity</a></li><li><a href="/social-economic-justice/">Social and Economic Justice</a></li><li><a href="/philanthropy/">Philanthropy Advisory</a></li>
+      </ul></div>
+    <div><h4>Studio</h4><ul>
+      <li><a href="/">Entry page</a></li>
+      <li><a href="mailto:info@presentlab.org">info@presentlab.org</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Present Lab. Registered health research &amp; social-justice consulting institution.</span>
+    <span>+234 818 332 7178 &middot; info@presentlab.org</span>
+  </div>
+</div></footer>
+</body>
+</html>
