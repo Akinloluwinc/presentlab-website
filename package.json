@@ -1,0 +1,17 @@
+{
+  "name": "presentlab-website",
+  "private": true,
+  "description": "The Present Lab website, presentlab.org",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "cms": "npx decap-server"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.7"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

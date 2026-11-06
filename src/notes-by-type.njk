@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: site.typeList
+  size: 1
+  alias: kind
+permalink: "/notes/{{ kind.path }}/"
+section: notes
+eleventyComputed:
+  filterType: "{{ kind.key }}"
+  metaTitle: "{{ kind.plural }} — Notes — Present Lab"
+  metaDescription: "{{ kind.plural }} from Present Lab's notes: the events we host, the methods we are developing, and what we publish."
+---
+{% include "partials/notes-listing.njk" %}

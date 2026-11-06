@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+---
+{%- from "partials/note-row.njk" import noteRow -%}
+<article class="wrap entry pp" aria-labelledby="h-practice">
+  <div class="grid">
+    <p class="crumb"><a class="tl" href="/#practices">Practices</a></p>
+    <h1 id="h-practice">{{ info.name }}</h1>
+  </div>
+  <div class="grid pp-head">
+    <p class="pedit pp-edit"><span class="vh">{{ ins }}, not {{ del | lower }}.</span><span aria-hidden="true"><del>{{ del }}</del> <ins>{{ ins }}</ins></span></p>
+    <p class="pp-lead">{{ lead }}</p>
+  </div>
+</article>
+
+{%- if focus and focus.length %}
+<section class="wrap sec" aria-labelledby="h-focus">
+  <div class="grid opener">
+    <h2 id="h-focus" class="h2">What we focus on</h2>
+  </div>
+  <ul class="focus">
+    {%- for area in focus %}
+    <li>
+      <h3>{{ area.title }}</h3>
+      <p>{{ area.text }}</p>
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- if content | trim %}
+  <div class="grid pp-more">
+    <div class="prose">{{ content | safe }}</div>
+  </div>
+  {%- endif %}
+</section>
+{%- endif %}
+
+{%- set filed = collections.notes | filedUnder(page.fileSlug) %}
+{%- if filed.length %}
+<section class="wrap sec" aria-labelledby="h-practice-notes">
+  <div class="grid opener">
+    <h2 id="h-practice-notes" class="h2">Notes</h2>
+    <p>Events, methods and publications from this practice.</p>
+  </div>
+  <ol class="nlist">
+    {%- for note in filed %}
+    {{ noteRow(note, "", false) }}
+    {%- endfor %}
+  </ol>
+  <p class="after"><a class="tl" href="/notes/">All notes</a></p>
+</section>
+{%- endif %}
+
+<p class="wrap ask">To discuss work in this area, write to <a href="mailto:{{ site.email }}?subject={{ info.name | urlencode }}">{{ site.email }}</a>.</p>

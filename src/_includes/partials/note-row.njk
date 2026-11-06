@@ -1,0 +1,31 @@
+{#- One note in a list. variant: "next" (Coming up), "year" (inside a year group) or nothing (home, More notes). -#}
+{% macro noteRow(note, variant, showPractice = true) -%}
+{%- set type = note.data.type -%}
+{%- set practice = note.data.practice | practice -%}
+{%- set meta = note | noteMeta(variant) -%}
+<li class="note{% if variant == 'next' %} note--next{% endif %}">
+  <p class="n-when">
+    {%- if variant == 'next' -%}
+    <time datetime="{{ note.date | isoDate }}"><span class="dw">{{ note.date | weekday }}</span> {{ note.date | fullDate }}</time>
+    {%- elif type == 'event' and variant == 'year' -%}
+    <time datetime="{{ note.date | isoDate }}">{{ note.date | dayMonth }}</time>
+    {%- elif type == 'event' -%}
+    <time datetime="{{ note.date | isoDate }}">{{ note.date | fullDate }}</time>
+    {%- elif variant == 'year' -%}
+    <time datetime="{{ note.date | isoMonth }}">{{ note.date | month }}</time>
+    {%- else -%}
+    <time datetime="{{ note.date | isoMonth }}">{{ note.date | monthYear }}</time>
+    {%- endif -%}
+    <span class="n-type">{{ type | typeLabel }}</span></p>
+  <div class="n-main">
+    <h3 class="n-title"><a href="{{ note.url }}">{{ note.data.title }}</a></h3>
+    <p class="n-dek">{{ note.data.dek }}</p>
+    {%- if meta %}
+    <p class="n-meta">{{ meta }}</p>
+    {%- endif %}
+  </div>
+  {%- if practice and showPractice %}
+  <p class="n-prac">{{ practice.name }}</p>
+  {%- endif %}
+</li>
+{%- endmacro %}

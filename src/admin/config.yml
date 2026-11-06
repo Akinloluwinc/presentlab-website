@@ -1,0 +1,181 @@
+# The notes editor at presentlab.org/admin/ (Decap CMS).
+# People sign in with their GitHub account; they need write access to this repository.
+backend:
+  name: github
+  repo: Akinloluwinc/presentlab-website
+  # While the redesign is on its preview, notes are saved to the "redesign" branch.
+  # When the redesign goes live, change this to: main
+  branch: redesign
+  # Sign-in goes through the GitHub provider installed on the Netlify project.
+  site_domain: presentlab-org.netlify.app
+  commit_messages:
+    create: "Add note: {{slug}}"
+    update: "Update note: {{slug}}"
+    delete: "Delete note: {{slug}}"
+    uploadMedia: "Upload file: {{path}}"
+    deleteMedia: "Delete file: {{path}}"
+
+# Drafts stay off the site until someone presses Publish.
+publish_mode: editorial_workflow
+
+# Lets someone edit on their own computer with "npm run cms". Ignored everywhere else.
+local_backend: true
+
+site_url: https://presentlab.org
+display_url: https://presentlab.org
+logo_url: /assets/logo-mark.png
+
+media_folder: src/assets/uploads
+public_folder: /assets/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: events
+    label: Events
+    label_singular: Event
+    description: Gatherings Present Lab hosts. An event shows under "Coming up" until its date has passed.
+    folder: src/notes
+    filter: { field: type, value: event }
+    create: true
+    slug: "{{slug}}"
+    preview_path: "notes/{{slug}}/"
+    identifier_field: title
+    summary: "{{date | date('D MMM YYYY')}} · {{title}}"
+    sortable_fields: [date, title]
+    view_groups:
+      - { label: Year, field: date, pattern: '\d{4}' }
+    fields:
+      - { name: type, widget: hidden, default: event }
+      - &title { label: Title, name: title, widget: string, hint: "Short and plain, like a headline." }
+      - label: Date of the event
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: D MMMM YYYY
+        time_format: false
+        picker_utc: true
+      - &practice
+        label: Practice
+        name: practice
+        widget: select
+        hint: The practice this note is filed under.
+        options:
+          - { label: AI and Digital Transformation, value: ai-digital }
+          - { label: Health Security and Biosecurity, value: health-security }
+          - { label: Social and Economic Justice, value: social-economic-justice }
+          - { label: Philanthropy Advisory, value: philanthropy }
+          - { label: Present Lab as a whole, value: studio }
+      - &dek { label: Summary, name: dek, widget: text, hint: "One sentence. It appears under the title and in every list of notes." }
+      - { label: Place, name: place, widget: string, hint: "Area and city, for example: Garki, Abuja" }
+      - { label: Time, name: time, widget: string, required: false, hint: "For example: 6 pm to 9 pm. Leave empty until it is set; the page will say \"Time to follow\"." }
+      - { label: Places available, name: capacity, widget: string, required: false, hint: "For example: Thirty guests" }
+      - { label: How to reserve a place, name: reserve, widget: string, required: false, hint: "An email address, a web link, or a short instruction. Leave empty until it is set." }
+      - { label: Hosts, name: hosts, widget: string, required: false }
+      - &body
+        label: Text
+        name: body
+        widget: markdown
+        required: false
+        hint: Short paragraphs. Bold, italics, links, headings and lists are available; images are not.
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: []
+
+  - name: methods
+    label: Methods
+    label_singular: Method
+    description: How we work, and methods we are developing.
+    folder: src/notes
+    filter: { field: type, value: method }
+    create: true
+    slug: "{{slug}}"
+    preview_path: "notes/{{slug}}/"
+    identifier_field: title
+    summary: "{{date | date('MMM YYYY')}} · {{title}}"
+    sortable_fields: [date, title]
+    view_groups:
+      - { label: Year, field: date, pattern: '\d{4}' }
+    fields:
+      - { name: type, widget: hidden, default: method }
+      - *title
+      - &published
+        label: Date published
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: D MMMM YYYY
+        time_format: false
+        picker_utc: true
+        default: "{{now}}"
+        hint: Lists show the month and year.
+      - *practice
+      - *dek
+      - &version { label: Version, name: version, widget: string, required: false, hint: "For example: 1.0 (pilot). Leave empty if the document has no version." }
+      - &pdf { label: PDF, name: file, widget: file, required: false, hint: "Upload the document if it can be shared publicly." }
+      - &link { label: Link, name: link, widget: string, required: false, hint: "Where to read it online, if it lives elsewhere. Starts with https://", pattern: ['^https?://', 'Start the link with https://'] }
+      - *body
+
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    description: Reports, toolkits and papers we publish.
+    folder: src/notes
+    filter: { field: type, value: publication }
+    create: true
+    slug: "{{slug}}"
+    preview_path: "notes/{{slug}}/"
+    identifier_field: title
+    summary: "{{date | date('MMM YYYY')}} · {{title}}"
+    sortable_fields: [date, title]
+    view_groups:
+      - { label: Year, field: date, pattern: '\d{4}' }
+    fields:
+      - { name: type, widget: hidden, default: publication }
+      - *title
+      - *published
+      - *practice
+      - *dek
+      - { label: Authors, name: authors, widget: string, hint: "For example: Anna Levy and Nonso Jideofor" }
+      - { label: Commissioned by, name: commissioned_by, widget: string, required: false }
+      - *version
+      - *pdf
+      - *link
+      - *body
+
+  - name: practices
+    label: Practice pages
+    label_singular: Practice page
+    description: The four practice pages. Each practice keeps its name and address; everything else here can change.
+    files:
+      - name: ai-digital
+        label: AI and Digital Transformation
+        file: src/practices/ai-digital.md
+        preview_path: ai-digital/
+        fields: &practicefields
+          - { name: order, widget: hidden }
+          - { label: "The edit: words struck out", name: del, widget: string, hint: "Shown crossed out, for example: Software" }
+          - { label: "The edit: words written in", name: ins, widget: string, hint: "Shown in their place, for example: Capability" }
+          - { label: Introduction, name: lead, widget: text, hint: "Two or three sentences at the top of the page: what this practice is about." }
+          - label: Focus areas
+            name: focus
+            widget: list
+            label_singular: focus area
+            summary: "{{fields.title}}"
+            hint: Three to five areas work best.
+            fields:
+              - { label: Focus area, name: title, widget: string }
+              - { label: Description, name: text, widget: text, hint: "One or two sentences." }
+          - { label: Home page description, name: blurb, widget: text, hint: "One sentence under the practice name on the home page." }
+          - label: More text
+            name: body
+            widget: markdown
+            required: false
+            hint: Optional. Appears under the focus areas.
+            buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+            editor_components: []
+      - { name: health-security, label: Health Security and Biosecurity, file: src/practices/health-security.md, preview_path: health-security/, fields: *practicefields }
+      - { name: social-economic-justice, label: Social and Economic Justice, file: src/practices/social-economic-justice.md, preview_path: social-economic-justice/, fields: *practicefields }
+      - { name: philanthropy, label: Philanthropy Advisory, file: src/practices/philanthropy.md, preview_path: philanthropy/, fields: *practicefields }

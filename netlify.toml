@@ -1,5 +1,9 @@
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"
 
 [[headers]]
   for = "/*"
@@ -8,10 +12,18 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Fonts, logos and uploaded files rarely change. The stylesheet gets a new
+# address (?v=...) whenever it changes, so caching it for a week is safe too.
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# The notes editor is for the team: keep it out of search engines.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
 
 # No trailing-slash redirects here: Netlify's Pretty URLs already forwards
 # /health-security to /health-security/, and redirect rules cannot add or

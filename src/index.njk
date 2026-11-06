@@ -1,0 +1,106 @@
+---
+layout: layouts/base.njk
+permalink: /
+metaTitle: Present Lab — Evidence-led design studio
+metaDescription: An evidence-led design studio working with governments, multilateral bodies, foundations and civil society. Four practices, one method.
+---
+{%- from "partials/note-row.njk" import noteRow -%}
+<section class="wrap hero" aria-labelledby="h-hero">
+  <div class="grid">
+    <h1 id="h-hero">
+      <span class="vh">Building a world that works for more of us.</span>
+      <span aria-hidden="true"><span class="l1">Building <del>a better future for all</del></span> <ins>a world that works for more of us.</ins></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="lead">Present Lab is an evidence-led design studio. We work with governments, multilateral bodies, foundations and civil society on the part that comes after the commitment: making it work in practice.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:{{ site.email }}?subject=Discussing%20an%20assignment">Discuss an assignment</a>
+        <a class="tl" href="#work">See where the work has run</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="practices" aria-labelledby="h-prac">
+  <div class="grid opener">
+    <h2 id="h-prac" class="h2">Four practices. One method.</h2>
+    <p>Each practice runs its own team, partners and body of evidence, drawing on a network of more than one hundred experts. All four make the same edit: from what was promised to what an institution can actually run.</p>
+  </div>
+  <ul class="plist">
+    {%- for item in collections.practices %}
+    {%- set p = item.data %}
+    <li class="prac">
+      <p class="pedit"><span class="vh">{{ p.ins }}, not {{ p.del | lower }}.</span><span aria-hidden="true"><del>{{ p.del }}</del> <ins>{{ p.ins }}</ins></span></p>
+      <div class="pbody">
+        <h3><a href="{{ item.url }}">{{ p.info.name }}</a></h3>
+        <p>{{ p.blurb }}</p>
+        <a class="tl" href="{{ item.url }}" aria-label="Visit the {{ p.info.name }} practice">Visit the practice</a>
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="wrap sec" id="method" aria-labelledby="h-method">
+  <h2 id="h-method" class="h2 h2-solo">One method</h2>
+  <div class="grid">
+    <p class="method-text">We <b>understand</b> what is in place and which gaps matter most, <b>design</b> fixes sized to the institution that has to run them, <b>test</b> them before anything is relied on, <b>embed</b> procedures, training and ownership inside the institution, and <b>review</b> on a set date, measuring only what the evidence can support.</p>
+    <p class="method-note">Five steps, in order. Each one leaves the institution with something it keeps.</p>
+  </div>
+</section>
+
+<section class="wrap sec" id="work" aria-labelledby="h-work">
+  <div class="grid opener">
+    <h2 id="h-work" class="h2">Where the work has run</h2>
+    <p>A selection across the four practices. Each practice page carries its full record.</p>
+  </div>
+  <table class="reg">
+    <caption class="vh">Selected work by Present Lab</caption>
+    <thead><tr><th scope="col">Where</th><th scope="col">Work</th><th scope="col">With</th><th scope="col">Practice</th></tr></thead>
+    <tbody>
+      <tr><td class="w">Nigeria</td><td class="k">Rapid preparedness assessment and refresher training at five international airports <span class="y">2026</span></td><td class="p">Port Health Services Division, Federal Ministry of Health and Social Welfare</td><td class="r">Health security</td></tr>
+      <tr><td class="w">Nigeria</td><td class="k">Institutional transformation of port health services through the design of public service journey maps, service-level agreements and SOPs <span class="y">2026</span></td><td class="p">Federal Ministry of Health and Social Welfare, the Presidential Enabling Business Environment Council (PEBEC) and the Maritime Anti-Corruption Network</td><td class="r">Health security</td></tr>
+      <tr><td class="w">Nigeria</td><td class="k">Tabletop exercise on biological and chemical emergencies at points of entry, Abuja: design, facilitation and evaluation <span class="y">2023</span></td><td class="p">Port Health Services and the Office of the National Security Adviser</td><td class="r">Health security</td></tr>
+      <tr><td class="w">The Gambia</td><td class="k">Process audit and multi-year digital roadmap for the African Commission on Human and Peoples’ Rights</td><td class="p">EPD, ACHPR</td><td class="r">AI and digital</td></tr>
+      <tr><td class="w">Liberia</td><td class="k">Launch of a national Master’s programme in AI, the first of its kind</td><td class="p">UNDP, Intel</td><td class="r">AI and digital</td></tr>
+      <tr><td class="w">Somalia</td><td class="k">Digital fitness and governance programme</td><td class="p">UNDP</td><td class="r">AI and digital</td></tr>
+      <tr><td class="w">Multi-country</td><td class="k">Local Leadership Labs: discovery, co-design and prototyping with civil society</td><td class="p">Brave Village</td><td class="r">Social and economic justice</td></tr>
+    </tbody>
+  </table>
+  <p class="reg-note">Findings and procedures belong to the institutions we support. We publish them only with their agreement.</p>
+</section>
+
+<figure class="question" aria-labelledby="q-cap">
+  <div class="wrap grid">
+    <blockquote>Does shifting the power mean shifting the business model?</blockquote>
+    <figcaption id="q-cap">The guiding question of <a href="/notes/the-power-shifting-shuffle/">The Power Shifting Shuffle</a>, our research inside human rights philanthropy.</figcaption>
+  </div>
+</figure>
+
+{%- set featured = collections.notes | homeNotes %}
+{%- if featured.length %}
+<section class="wrap sec" id="notes" aria-labelledby="h-notes">
+  <div class="grid opener">
+    <h2 id="h-notes" class="h2">Notes</h2>
+    <p>Events we host, methods we are developing, and what we publish.</p>
+  </div>
+  <ol class="nlist">
+    {%- for note in featured %}
+    {{ noteRow(note) }}
+    {%- endfor %}
+  </ol>
+  <p class="after"><a class="tl" href="/notes/">All notes</a></p>
+</section>
+{%- endif %}
+
+<section class="wrap close" id="contact" aria-labelledby="h-close">
+  <div class="grid">
+    <h2 id="h-close">Bring us the problem you can’t name yet.</h2>
+    <p class="say">Most engagements begin with a scoping conversation, before anyone commits to what the work is.</p>
+    <dl class="contact">
+      <div><dt>Write</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd></div>
+      <div><dt>Call</dt><dd><a href="{{ site.phoneHref }}">{{ site.phone }}</a></dd></div>
+      <div><dt>Visit</dt><dd>{{ site.location }}</dd></div>
+    </dl>
+  </div>
+</section>

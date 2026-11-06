@@ -1,0 +1,45 @@
+{#- The Notes page and its Events, Methods and Publications views. Set filterType before including. -#}
+{%- from "partials/note-row.njk" import noteRow -%}
+{%- set shown = collections.notes | ofType(filterType) -%}
+{%- set next = shown | upcoming -%}
+{%- set past = shown | archive -%}
+<section class="wrap" aria-labelledby="h-page">
+  <div class="grid phead">
+    <h1 id="h-page"><span class="vh">Notes{% if kind %}: {{ kind.plural }}{% endif %}</span><span aria-hidden="true"><del>Insights</del> <ins>Notes</ins></span></h1>
+    <p class="lead">Dated notes from the studio: the events we host, the methods we are developing, and what we publish.</p>
+    <nav class="filter" aria-label="Show notes by type">
+      <a href="/notes/"{% if not filterType %} aria-current="page"{% endif %}>All notes</a>
+      {%- for k in site.typeList %}
+      <a href="/notes/{{ k.path }}/"{% if filterType == k.key %} aria-current="page"{% endif %}>{{ k.plural }}</a>
+      {%- endfor %}
+    </nav>
+  </div>
+</section>
+
+<div class="wrap yrs">
+  {%- if next.length %}
+  <section class="yr" aria-labelledby="h-next">
+    <h2 id="h-next">Coming up</h2>
+    <ol class="nlist">
+      {%- for note in next %}
+      {{ noteRow(note, "next") }}
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endif %}
+  {%- for group in past | byYear %}
+  <section class="yr" aria-labelledby="h-{{ group.year }}">
+    <h2 id="h-{{ group.year }}">{{ group.year }}</h2>
+    <ol class="nlist">
+      {%- for note in group.items %}
+      {{ noteRow(note, "year") }}
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endfor %}
+  {%- if not shown.length %}
+  <p class="empty">{% if kind %}No {{ kind.plural | lower }} yet.{% else %}No notes yet.{% endif %}</p>
+  {%- endif %}
+</div>
+
+<p class="wrap ask">To ask about anything here, write to <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>

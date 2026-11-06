@@ -1,0 +1,70 @@
+---
+layout: layouts/base.njk
+---
+{%- from "partials/note-row.njk" import noteRow -%}
+{%- set practiceInfo = practice | practice -%}
+{%- set typeName = type | typeLabel -%}
+<article class="wrap entry" aria-labelledby="h-entry">
+  <div class="grid">
+    <p class="crumb"><a class="tl" href="/notes/">Notes</a><span aria-hidden="true">/</span><em>{{ typeName }}</em></p>
+    <h1 id="h-entry">{{ title }}</h1>
+    <p class="dek">{{ dek }}</p>
+  </div>
+  <div class="grid entry-body">
+    <dl class="facts">
+      {%- if type == 'event' %}
+      <div><dt>When</dt><dd><time datetime="{{ page.date | isoDate }}">{{ page.date | weekday }} {{ page.date | fullDate }}</time>{% if time %}<span class="l2">{{ time }}</span>{% else %}<span class="tbc">Time to follow</span>{% endif %}</dd></div>
+      {%- if place %}
+      <div><dt>Where</dt><dd>{{ place }}</dd></div>
+      {%- endif %}
+      {%- if capacity %}
+      <div><dt>Places</dt><dd>{{ capacity }}</dd></div>
+      {%- endif %}
+      <div><dt>Reserve</dt><dd>{% if reserve %}{{ reserve | reserveLink | safe }}{% else %}<span class="tbc">Details to follow</span>{% endif %}</dd></div>
+      {%- if hosts %}
+      <div><dt>Hosts</dt><dd>{{ hosts }}</dd></div>
+      {%- endif %}
+      {%- else %}
+      <div><dt>Published</dt><dd><time datetime="{{ page.date | isoMonth }}">{{ page.date | monthYear }}</time></dd></div>
+      {%- if version %}
+      <div><dt>Version</dt><dd>{{ version }}</dd></div>
+      {%- endif %}
+      {%- if authors %}
+      <div><dt>Authors</dt><dd>{{ authors }}</dd></div>
+      {%- endif %}
+      {%- if commissioned_by %}
+      <div><dt>Commissioned by</dt><dd>{{ commissioned_by }}</dd></div>
+      {%- endif %}
+      {%- if file or link %}
+      <div><dt>Read it</dt><dd>
+        {%- if file %}<span class="l2"><a href="{{ file }}">Download the PDF</a></span>{% endif %}
+        {%- if link %}<span class="l2"><a href="{{ link }}">Read online</a></span>{% endif -%}
+      </dd></div>
+      {%- endif %}
+      {%- endif %}
+    </dl>
+    <div class="prose">
+      {{ content | safe }}
+      {%- if practiceInfo %}
+      <p class="filed">Filed under <a class="tl" href="{{ practiceInfo.url }}">{{ practiceInfo.name }}</a></p>
+      {%- endif %}
+    </div>
+  </div>
+</article>
+
+{%- set more = collections.notes | others(page.url) %}
+{%- if more.length %}
+<section class="wrap sec more" aria-labelledby="h-more">
+  <div class="grid opener">
+    <h2 id="h-more" class="h2">More notes</h2>
+  </div>
+  <ol class="nlist">
+    {%- for note in more %}
+    {{ noteRow(note) }}
+    {%- endfor %}
+  </ol>
+  <p class="after"><a class="tl" href="/notes/">All notes</a></p>
+</section>
+{%- endif %}
+
+<p class="wrap ask">To ask about anything here, write to <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
