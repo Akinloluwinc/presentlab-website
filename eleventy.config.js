@@ -1,7 +1,7 @@
 // Builds presentlab.org: turns the templates and note files in src/ into the
 // finished site in _site/, which Netlify publishes.
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import site from "./src/_data/site.js";
 
 const dateFormat = (options) => new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", ...options });
@@ -96,6 +96,16 @@ export default function (eleventyConfig) {
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) return `<a href="mailto:${safe}">${safe}</a>`;
     if (/^https?:\/\/\S+$/.test(text)) return `<a href="${safe}">Reserve a place</a>`;
     return safe;
+  });
+
+  // The size of a file in src/, for download links ("8.8 MB"). Empty if the file is missing.
+  eleventyConfig.addFilter("fileSize", (path) => {
+    try {
+      const bytes = statSync(`src${path}`).size;
+      return bytes >= 1e6 ? `${(bytes / 1e6).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} KB`;
+    } catch {
+      return "";
+    }
   });
 
   // Gives the stylesheet a new address whenever it changes, so browsers never keep an old copy.

@@ -220,7 +220,8 @@ section{scroll-margin-top:24px}
 .facts dd{margin-top:3px;font-size:18px;line-height:1.4}
 .facts dd a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .facts .l2{display:block}
-.facts .l2 a{display:inline-block;padding:10px 0;margin:-10px 0}
+.facts .l2 a{display:inline-block;padding:11px 0;margin:-11px 0}
+.facts .fsize{color:var(--ink-2)}
 .facts .tbc{display:block;color:var(--ink-2)}
 .prose{grid-column:5/span 6;font-size:20px;line-height:1.6;font-variation-settings:"opsz" 20}
 .prose > * + *{margin-top:1em}

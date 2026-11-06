@@ -37,7 +37,7 @@ layout: layouts/base.njk
       {%- endif %}
       {%- if file or link %}
       <div><dt>Read it</dt><dd>
-        {%- if file %}<span class="l2"><a href="{{ file }}">Download the PDF</a></span>{% endif %}
+        {%- if file %}{% set size = file | fileSize %}<span class="l2"><a href="{{ file }}">Download the PDF</a>{% if size %} <span class="fsize">({{ size }})</span>{% endif %}</span>{% endif %}
         {%- if link %}<span class="l2"><a href="{{ link }}">Read online</a></span>{% endif -%}
       </dd></div>
       {%- endif %}
