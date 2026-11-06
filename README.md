@@ -38,8 +38,8 @@ provider installed on the Netlify project (Project configuration â†’ Security â†
   A practice's name and address are fixed in `src/_data/site.js`.
 - The editor is pinned to one Decap CMS version in `src/admin/index.html`. Upgrade on a preview first.
 
-While the redesign is on its preview, the editor saves to the `redesign` branch. **At launch, change
-`branch: redesign` to `branch: main` in `src/admin/config.yml`.**
+The editor publishes to `main`, so a published note is live a couple of minutes later. Drafts live on
+their own `cms/...` branches until they are published.
 
 ## Before publishing
 

@@ -3,9 +3,8 @@
 backend:
   name: github
   repo: Akinloluwinc/presentlab-website
-  # While the redesign is on its preview, notes are saved to the "redesign" branch.
-  # When the redesign goes live, change this to: main
-  branch: redesign
+  # Published notes go to main, which Netlify builds and publishes to presentlab.org.
+  branch: main
   # Sign-in goes through the GitHub provider installed on the Netlify project.
   site_domain: presentlab-org.netlify.app
   commit_messages:
