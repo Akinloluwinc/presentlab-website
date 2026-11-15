@@ -28,3 +28,11 @@
 # No trailing-slash redirects here: Netlify's Pretty URLs already forwards
 # /health-security to /health-security/, and redirect rules cannot add or
 # remove trailing slashes (they can loop). See docs.netlify.com, Redirect options.
+
+# A replaced file gets a new name, so no browser keeps showing a cached copy of
+# the old one (uploads are cached for a week). The old address forwards to the
+# new file, so links already shared keep working.
+[[redirects]]
+  from = "/assets/uploads/present-lab-rapid-preparedness-diagnostic-v1.0.pdf"
+  to = "/assets/uploads/present-lab-rapid-preparedness-diagnostic-methodology-note-v1.0.pdf"
+  status = 301

@@ -5,7 +5,7 @@ date: 2026-10-01
 practice: health-security
 dek: "A one-day, evidence-based review of 31 items that checks whether an airport can detect, assess, isolate, refer and notify an ill traveller today, and decide what to fix first."
 version: 1.0 (pilot)
-file: /assets/uploads/present-lab-rapid-preparedness-diagnostic-v1.0.pdf
+file: /assets/uploads/present-lab-rapid-preparedness-diagnostic-methodology-note-v1.0.pdf
 ---
 A contingency plan on file does not show that it works with the staff on duty, at any hour, when a traveller falls ill. This diagnostic helps port health teams and their partners check the evidence for each step in one day, see which functions are in place and which are not, and decide what to fix first.
 
