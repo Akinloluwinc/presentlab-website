@@ -115,6 +115,18 @@ collections:
       - &version { label: Version, name: version, widget: string, required: false, hint: "For example: 1.0 (pilot). Leave empty if the document has no version." }
       - &pdf { label: PDF, name: file, widget: file, required: false, hint: "Upload the document if it can be shared publicly." }
       - &link { label: Link, name: link, widget: string, required: false, hint: "Where to read it online, if it lives elsewhere. Starts with https://", pattern: ['^https?://', 'Start the link with https://'] }
+      - { label: Runs at, name: app, widget: string, required: false, hint: "The address of a tool, if the method has one, for example https://simex.presentlab.org", pattern: ['^https?://', 'Start the address with https://'] }
+      - label: Films
+        name: films
+        widget: list
+        required: false
+        hint: "The first film plays at the top of the page; the others appear under the text. A film without a link shows only on previews, never on the live site."
+        summary: "{{fields.title}} ({{fields.length}})"
+        fields:
+          - { label: Title, name: title, widget: string, hint: "For example: The launch film" }
+          - { label: Length, name: length, widget: string, hint: "For example: 1 min 23 s" }
+          - { label: Link, name: url, widget: string, required: false, hint: "The YouTube or Vimeo link (it plays on the page without tracking cookies). Leave empty until the film is uploaded.", pattern: ['^(https?://.*)?$', 'Start the link with https://'] }
+          - { label: Poster, name: poster, widget: image, hint: "A still from the film, 16:9, about 1600 × 900 pixels." }
       - *body
 
   - name: publications

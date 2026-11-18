@@ -2,6 +2,8 @@
 layout: layouts/base.njk
 ---
 {%- from "partials/note-row.njk" import noteRow -%}
+{%- from "partials/film.njk" import film -%}
+{%- set shownFilms = films | filmsToShow(site.preview) -%}
 {%- set practiceInfo = practice | practice -%}
 {%- set typeName = type | typeLabel -%}
 <article class="wrap entry" aria-labelledby="h-entry">
@@ -10,6 +12,11 @@ layout: layouts/base.njk
     <h1 id="h-entry">{{ title }}</h1>
     <p class="dek">{{ dek }}</p>
   </div>
+  {%- if shownFilms.length %}
+  <div class="grid film-row">
+    {{ film(shownFilms[0], true) }}
+  </div>
+  {%- endif %}
   <div class="grid entry-body">
     <dl class="facts">
       {%- if type == 'event' %}
@@ -35,6 +42,14 @@ layout: layouts/base.njk
       {%- if commissioned_by %}
       <div><dt>Commissioned by</dt><dd>{{ commissioned_by }}</dd></div>
       {%- endif %}
+      {%- if app %}
+      <div><dt>Runs at</dt><dd><a href="{{ app }}">{{ app | replace("https://", "") }}</a></dd></div>
+      {%- endif %}
+      {%- if shownFilms.length %}
+      <div><dt>Films</dt><dd>
+        {%- for f in shownFilms %}<span class="l2">{% if f.url %}<a href="{{ f.url }}">{{ f.title }}</a>{% else %}{{ f.title }}{% endif %} <span class="fsize">({{ f.length }})</span></span>{% endfor -%}
+      </dd></div>
+      {%- endif %}
       {%- if file or link %}
       <div><dt>Read it</dt><dd>
         {%- if file %}{% set size = file | fileSize %}<span class="l2"><a href="{{ file }}">Download the PDF</a>{% if size %} <span class="fsize">({{ size }})</span>{% endif %}</span>{% endif %}
@@ -45,6 +60,13 @@ layout: layouts/base.njk
     </dl>
     <div class="prose">
       {{ content | safe }}
+      {%- if shownFilms.length > 1 %}
+      {%- set guides = shownFilms.length - 1 %}
+      <h2>How it works, in {{ "a short film" if guides == 1 else ("two short films" if guides == 2 else guides ~ " short films") }}</h2>
+      {%- for f in shownFilms %}{% if not loop.first %}
+      {{ film(f) }}
+      {%- endif %}{% endfor %}
+      {%- endif %}
       {%- if practiceInfo %}
       <p class="filed">Filed under <a class="tl" href="{{ practiceInfo.url }}">{{ practiceInfo.name }}</a></p>
       {%- endif %}
@@ -68,3 +90,21 @@ layout: layouts/base.njk
 {%- endif %}
 
 <p class="wrap ask">To ask about anything here, write to <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+{%- if shownFilms.length %}
+<script>
+// A film's poster becomes its player when clicked (YouTube and Vimeo links only).
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a.film-play[data-embed]");
+  if (!link) return;
+  event.preventDefault();
+  const frame = document.createElement("iframe");
+  frame.src = link.dataset.embed;
+  frame.title = link.getAttribute("aria-label") || "Film";
+  frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+  frame.allowFullscreen = true;
+  frame.className = "film-frame";
+  link.replaceWith(frame);
+  frame.focus();
+});
+</script>
+{%- endif %}

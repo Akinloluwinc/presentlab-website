@@ -36,3 +36,10 @@
   from = "/assets/uploads/present-lab-rapid-preparedness-diagnostic-v1.0.pdf"
   to = "/assets/uploads/present-lab-rapid-preparedness-diagnostic-methodology-note-v1.0.pdf"
   status = 301
+
+# Short address for SIMEX, used in the launch film and posts. 302 (temporary), so it can later point
+# to a page of its own without browsers holding on to the old destination.
+[[redirects]]
+  from = "/simex"
+  to = "/notes/simex/"
+  status = 302

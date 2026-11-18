@@ -1,0 +1,20 @@
+{#- One film: its poster with a play label. With a YouTube or Vimeo link, a click swaps the poster for
+    the player (no tracking cookies; without JavaScript the link opens the film where it lives).
+    Without a link (deploy previews only) the poster shows where the film will go. -#}
+{% macro film(f, lead = false) -%}
+{%- set embed = f.url | filmEmbed -%}
+<figure class="film{% if lead %} film--lead{% endif %}">
+  {%- if f.url %}
+  <a class="film-play" href="{{ f.url }}"{% if embed %} data-embed="{{ embed }}"{% endif %} aria-label="Play {{ f.title | lower }}, {{ f.length }}">
+    <img src="{{ f.poster }}" alt="" width="1600" height="900"{% if not lead %} loading="lazy"{% endif %}>
+    <span class="film-label" aria-hidden="true"><span class="film-tri"></span>{{ f.title }}<span class="film-len">{{ f.length }}</span></span>
+  </a>
+  {%- else %}
+  <div class="film-play film-pending">
+    <img src="{{ f.poster }}" alt="" width="1600" height="900"{% if not lead %} loading="lazy"{% endif %}>
+    <span class="film-label"><span class="film-tri"></span>{{ f.title }}<span class="film-len">{{ f.length }}</span></span>
+  </div>
+  <figcaption class="film-note">Preview only: the film plays here once its YouTube link is added. Without a link, it does not appear on the live site.</figcaption>
+  {%- endif %}
+</figure>
+{%- endmacro %}

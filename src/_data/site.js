@@ -10,6 +10,19 @@ export default {
   legal: "Registered health research and social-justice consulting institution.",
   year: new Date().getUTCFullYear(),
 
+  // True everywhere except the live site (Netlify sets CONTEXT=production for presentlab.org).
+  // Deploy previews use it to show what a page will look like before every link is in place.
+  preview: process.env.CONTEXT !== "production",
+
+  // One line under the home page headline, linking to a note. Delete this block to remove it.
+  announcement: {
+    lead: "SIMEX is",
+    del: "coming soon",
+    ins: "open for testing",
+    url: "/notes/simex/",
+    link: "Read about SIMEX",
+  },
+
   nav: [
     { label: "Practices", url: "/#practices" },
     { label: "Method", url: "/#method" },

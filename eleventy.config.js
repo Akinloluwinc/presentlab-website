@@ -98,6 +98,20 @@ export default function (eleventyConfig) {
     return safe;
   });
 
+  // A film's YouTube or Vimeo link, as the address of a player that sets no tracking cookies.
+  // Empty for any other link: the film then simply opens where it lives.
+  eleventyConfig.addFilter("filmEmbed", (url) => {
+    const s = String(url || "").trim();
+    let m = s.match(/^https?:\/\/(?:www\.)?youtu\.be\/([\w-]{6,})/) ||
+      s.match(/^https?:\/\/(?:www\.|m\.)?youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)([\w-]{6,})/);
+    if (m) return `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0`;
+    m = s.match(/^https?:\/\/(?:www\.)?vimeo\.com\/(\d+)/);
+    if (m) return `https://player.vimeo.com/video/${m[1]}?autoplay=1&dnt=1`;
+    return "";
+  });
+  // Films to show: those with a link, plus (in previews only) those still waiting for one.
+  eleventyConfig.addFilter("filmsToShow", (films, preview) => (films || []).filter((f) => f && f.poster && (f.url || preview)));
+
   // The size of a file in src/, for download links ("8.8 MB"). Empty if the file is missing.
   eleventyConfig.addFilter("fileSize", (path) => {
     try {
