@@ -12,5 +12,5 @@ focus:
   - title: Market intelligence
     text: "Willingness to pay and market research for diagnostics and other health products, pricing demand the way a commercial team would."
   - title: Strategic prioritisation
-    text: "Helping donors navigate the humanitarian financing gap: the interventions with the most leverage across West African health systems, with transparent unit costs."
+    text: "Helping donors facing the humanitarian financing gap find the interventions with the most leverage across West African health systems, with transparent unit costs."
 ---
