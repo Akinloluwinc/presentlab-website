@@ -23,6 +23,7 @@ Netlify, with a notes editor at `/admin/` ([Decap CMS](https://decapcms.org/)).
 | Names, contact details, navigation, practice names and addresses | `src/_data/site.js` |
 | Stylesheet, fonts, logos | `src/assets/` |
 | Files uploaded through the editor (PDFs) | `src/assets/uploads/` |
+| A looping animation on a note (only the airports methodology note has one) | `src/notes/<note>.11tydata.js`, video and poster in `src/assets/uploads/` |
 | The editor: settings and preview | `src/admin/config.yml`, `src/admin/preview.js` |
 | Build settings | `eleventy.config.js`, `netlify.toml` |
 

@@ -4,6 +4,11 @@ layout: layouts/base.njk
 {%- from "partials/note-row.njk" import noteRow -%}
 {%- set practiceInfo = practice | practice -%}
 {%- set typeName = type | typeLabel -%}
+{#- A looping animation, when the note's .11tydata.js file sets one, goes after the first paragraph. -#}
+{%- if animation and animation.video -%}
+{%- set animationFigure %}{% include "partials/animation.njk" %}{% endset -%}
+{%- set content = content | afterFirstParagraph(animationFigure) -%}
+{%- endif %}
 <article class="wrap entry" aria-labelledby="h-entry">
   <div class="grid">
     <p class="crumb"><a class="tl" href="/notes/">Notes</a><span aria-hidden="true">/</span><em>{{ typeName }}</em></p>
