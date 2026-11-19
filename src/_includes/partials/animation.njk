@@ -1,0 +1,23 @@
+{#- A looping animation in a note, placed after its first paragraph by layouts/note.njk.
+    The files and caption come from the note's .11tydata.js file. It plays muted, unless the
+    reader has asked for less motion, and the button pauses and plays it. -#}
+<figure class="anim">
+  <video id="anim-video" width="{{ animation.width }}" height="{{ animation.height }}" muted loop playsinline preload="none" poster="{{ animation.poster }}" aria-describedby="anim-cap">
+    <source src="{{ animation.video }}" type="video/mp4">
+  </video>
+  <figcaption id="anim-cap">{{ animation.caption }} <button type="button" class="anim-toggle" id="anim-toggle" hidden>Play</button></figcaption>
+</figure>
+<script>
+(() => {
+  const video = document.getElementById("anim-video");
+  const button = document.getElementById("anim-toggle");
+  if (!video || !button) return;
+  const label = () => { button.textContent = video.paused ? "Play" : "Pause"; };
+  video.addEventListener("play", label);
+  video.addEventListener("pause", label);
+  button.addEventListener("click", () => (video.paused ? video.play() : video.pause()));
+  button.hidden = false;
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) video.play().catch(label);
+  label();
+})();
+</script>
