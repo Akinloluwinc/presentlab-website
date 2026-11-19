@@ -3,10 +3,10 @@ order: 1
 del: Software
 ins: Capability
 blurb: For institutions, governments and development agencies deciding what to automate, what to resist, and who benefits.
-lead: "Technology decides who gets to act. Digital transformation is not procurement: it redistributes who can act, who is legible to the system, and who decides. We help institutions build the capability to use technology well, and the judgement about what not to automate."
+lead: "Digital transformation shifts who can act, who is legible to the system, and who decides. We help institutions build the capability to use technology well, and the judgement about what not to automate."
 focus:
   - title: Readiness before the roadmap
-    text: "We start from the work itself: what staff actually do, what they are accountable for, and where technology lightens the load rather than adding to it. An institution that is not ready for a platform should be told so before it signs."
+    text: "We start from the work itself: what staff actually do, what they are accountable for, and where technology lightens the load rather than adding to it. If an institution is not ready for a platform, it should hear that before it signs."
   - title: AI in public institutions
     text: "Where AI and other emerging methods can serve health security and governance in West Africa, and where a system would import surveillance that an institution has no mandate to hold."
   - title: Institutional AI orchestration
