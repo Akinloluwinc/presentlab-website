@@ -1,7 +1,7 @@
 ---
 type: event
 title: An Evening on AI
-date: 2026-11-21
+date: 2026-12-05
 practice: ai-digital
 dek: "An evening of conversation about what AI means for our work and institutions in Nigeria, open to everyone."
 place: Garki, Abuja
