@@ -38,7 +38,7 @@ As the exercise runs, each criterion shows where it stands: met, late, overdue o
 
 ## AI is optional
 
-Every part of SIMEX works without AI, and AI stays off unless the facilitator chooses to use it. If they do, it can draft exercise content, play a role that no one is available to play and draft the report’s narrative. It only proposes: nothing goes into the design, the record or the report until the facilitator accepts it, and the record and the report show what it played or drafted. With AI on, the content each task needs is sent to an outside AI service; during testing, that content is synthetic. With AI off, nothing is sent.
+Every part of SIMEX works without AI, and AI stays off unless the facilitator chooses to use it. If they do, it can draft exercise content, play a role that no one is available to play, and draft the report’s narrative and suggested improvements. It only proposes: nothing goes into the design, the record or the report until the facilitator accepts it, and the record and the report show what it played or drafted. With AI on, the content each task needs is sent to Anthropic’s Claude models, through a service called OpenRouter: Claude Haiku for exercise content and roles, Claude Sonnet for the report. During testing, that content is synthetic. With AI off, nothing is sent.
 
 ## What it is not
 
