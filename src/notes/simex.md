@@ -17,7 +17,7 @@ films:
     poster: /assets/uploads/simex-player-guide-poster.jpg
   - title: Guide for facilitators and designers
     length: 4 min 18 s
-    url: ""
+    url: "https://youtu.be/GA07tPy2Jt0"
     poster: /assets/uploads/simex-facilitator-guide-poster.jpg
 ---
 Simulation exercises let a team test an emergency plan before it’s needed. They take weeks to design and are hard to run well, and the record of who decided what, and when, is easily lost before the report is written.
