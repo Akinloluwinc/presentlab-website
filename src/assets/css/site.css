@@ -221,7 +221,7 @@ section{scroll-margin-top:24px}
 .facts dd a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .facts .l2{display:block}
 .facts .l2 a{display:inline-block;padding:11px 0;margin:-11px 0}
-.facts .fsize{color:var(--ink-2)}
+.facts .fsize{color:var(--ink-2);white-space:nowrap}
 .facts .tbc{display:block;color:var(--ink-2)}
 .prose{grid-column:5/span 6;font-size:20px;line-height:1.6;font-variation-settings:"opsz" 20}
 .prose > * + *{margin-top:1em}
@@ -367,4 +367,38 @@ section{scroll-margin-top:24px}
   .f-nav a{display:inline-block;padding:10px 0}
   .f-nav ul{gap:0}
   .contact dd a{display:inline-block;padding:8px 0}
+}
+
+/* ---------- Home: a one-line announcement under the headline (src/_data/site.js) ---------- */
+.announce{margin-bottom:clamp(56px,6.5vw,96px)}
+.announce-in{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 32px;
+  padding:22px 0 24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.announce h2{font-size:clamp(24px,2.5vw,36px);line-height:1.15;font-weight:440;letter-spacing:-.014em;font-variation-settings:"opsz" 36}
+.announce h2 a{text-decoration:none}
+.announce .tl{font-size:17px;white-space:nowrap}
+
+/* ---------- Films on a note: a poster that becomes the player when clicked ---------- */
+.film-row{margin-top:clamp(40px,5vw,72px)}
+.film{margin:0}
+.film--lead{grid-column:1/span 10}
+.film-play{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:var(--ink);color:var(--paper);
+  text-decoration:none;outline-offset:3px;box-shadow:0 0 0 1px var(--ink)}
+.film-play img{display:block;width:100%;height:100%;object-fit:cover}
+.film-label{position:absolute;left:0;bottom:0;display:flex;align-items:center;gap:12px;padding:14px 20px 15px 18px;
+  background:var(--ink);color:var(--paper);font-size:18px;line-height:1.2}
+.film-tri{flex:none;width:0;height:0;border-left:12px solid var(--paper);border-top:8px solid transparent;border-bottom:8px solid transparent}
+.film-len{margin-left:4px;font-size:16px;color:#C9C9C3;font-variant-numeric:lining-nums tabular-nums}
+.film-frame{display:block;width:100%;aspect-ratio:16/9;border:0;background:var(--ink)}
+.film-pending{cursor:default}
+.film-note{margin-top:10px;font-size:15px;line-height:1.45;color:var(--ink-2)}
+.prose .film{max-width:34em}
+.prose .film + .film{margin-top:28px}
+.prose .film .film-label{font-size:16px;padding:11px 16px 12px 14px}
+@media (hover:hover) and (pointer:fine){
+  a.film-play:hover .film-label{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+}
+@media (max-width:860px){
+  .film--lead{grid-column:1/-1}
+  .film-label{font-size:16px;padding:11px 14px 12px 12px}
+  .announce .tl{white-space:normal}
 }

@@ -21,6 +21,15 @@ metaDescription: An evidence-led design studio working with governments, multila
   </div>
 </section>
 
+{%- if site.announcement %}
+{%- set ann = site.announcement %}
+<aside class="wrap announce" aria-label="Announcement">
+  <div class="announce-in">
+    <h2><a href="{{ ann.url }}"><span class="vh">{{ ann.lead }} {{ ann.ins }}.</span><span aria-hidden="true">{{ ann.lead }} <del>{{ ann.del }}</del> <ins>{{ ann.ins }}</ins>.</span></a></h2>
+    <a class="tl" href="{{ ann.url }}">{{ ann.link }}</a>
+  </div>
+</aside>
+{%- endif %}
 <section class="wrap" id="practices" aria-labelledby="h-prac">
   <div class="grid opener">
     <h2 id="h-prac" class="h2">Four practices</h2>

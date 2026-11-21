@@ -11,6 +11,8 @@ focus:
     text: "Biorisk management, and coordination between health, security and defence agencies, tested through exercises before it is relied on."
   - title: Policy and institutions
     text: "Putting the amended International Health Regulations and the WHO Pandemic Agreement into practice: legal and governance instruments, service standards, and the institutions that deliver them."
+  - title: Simulation exercises
+    text: "Designing, facilitating and evaluating simulation exercises to the WHO standard, in the room or online. SIMEX, our platform for this work, is open for testing."
   - title: Surveillance, cooperation and financing
     text: "Linking points of entry to national surveillance, sharing information between neighbouring countries, and financing and delivering medical countermeasures in an emergency."
 ---
