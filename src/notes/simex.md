@@ -34,11 +34,11 @@ The facilitator runs the exercise from one console, in the room or online. Parti
 
 ## Evaluate
 
-Criteria are marked met, late or missing as the exercise runs, and evaluators add their observations. The facilitator gets a draft after-action report, organised by objective, to review. The record can be replayed to confirm that nothing in it has changed.
+As the exercise runs, each criterion shows where it stands: met, late, overdue or not yet due. Evaluators add their observations. When play ends, the facilitator records the hot wash and agrees an improvement plan with the table: who owns each action, by when, and how it will be checked. SIMEX then drafts the after-action report from the record, organised by objective, for the facilitator to review and finalise. It can be printed, saved as a PDF or downloaded in Word. The record can be replayed to confirm that nothing in it has changed.
 
-## Where AI fits
+## AI is optional
 
-AI is optional, and the facilitator stays in charge of it. It can draft exercise content and play roles that no one is available to play, but it only ever proposes. Nothing goes into the design or the record until the facilitator accepts it.
+Every part of SIMEX works without AI, and AI stays off unless the facilitator chooses to use it. If they do, it can draft exercise content, play a role that no one is available to play, and draft the report’s narrative and suggested improvements. It only proposes: nothing goes into the design, the record or the report until the facilitator accepts it, and the record and the report show what it played or drafted. With AI on, the content each task needs is sent to Anthropic’s Claude models. During testing, that content is synthetic. With AI off, nothing is sent.
 
 ## What it is not
 
