@@ -3,7 +3,7 @@ type: method
 title: Rapid preparedness diagnostic for airports
 date: 2026-10-01
 practice: health-security
-dek: "A one-day, evidence-based review of 31 items that checks whether an airport can detect, assess, isolate, refer and notify an ill traveller today, and decide what to fix first."
+dek: "A one-day, evidence-based review of 31 items that checks whether an airport can detect, assess, isolate, refer and notify an ill traveller today, and helps decide what to fix first."
 version: 1.0 (pilot)
 file: /assets/uploads/present-lab-rapid-preparedness-diagnostic-methodology-note-v1.0.pdf
 ---

@@ -239,6 +239,12 @@ section{scroll-margin-top:24px}
 .prose hr{border:0;border-top:1px solid var(--rule);margin:2em 0}
 .prose .filed{max-width:none;margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);font-size:16px;line-height:1.5;color:var(--ink-2)}
 .filed a{color:var(--ink)}
+/* A looping animation in a note, after the first paragraph (partials/animation.njk). */
+.prose .anim{margin:2em 0}
+.anim video{display:block;width:100%;height:auto;background:var(--paper)}
+.anim figcaption{margin-top:14px;max-width:34em;font-size:16px;line-height:1.5;color:var(--ink-2);text-wrap:pretty}
+.anim-toggle{margin-left:.3em;padding:0;border:0;background:none;font:inherit;color:var(--ink);cursor:pointer;
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 /* On a note page, "More notes" sits on the article grid: facts column, then prose column. */
 @media (min-width:861px){
   .more .n-when{grid-column:1/span 3}

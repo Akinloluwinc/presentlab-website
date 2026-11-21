@@ -68,6 +68,12 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("others", (notes, url, count = 2) => notes.filter((n) => n.url !== url).slice(0, count));
   eleventyConfig.addFilter("filedUnder", (notes, slug) => notes.filter((n) => n.data.practice === slug));
+  // Puts a block of HTML after the first paragraph of a note's text (at the end if there is none).
+  eleventyConfig.addFilter("afterFirstParagraph", (html, block) => {
+    const text = String(html || "");
+    const end = text.indexOf("</p>");
+    return end === -1 ? text + block : text.slice(0, end + 4) + block + text.slice(end + 4);
+  });
 
   // Labels.
   eleventyConfig.addFilter("practice", (slug) => site.practices.find((p) => p.slug === slug));
