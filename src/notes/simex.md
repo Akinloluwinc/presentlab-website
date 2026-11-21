@@ -8,17 +8,17 @@ version: Pilot, open for testing
 app: https://simex.presentlab.org
 films:
   - title: The launch film
-    length: 1 min 23 s
-    url: "https://youtu.be/dCqosqxfbTY"
+    length: 1 min 35 s
+    url: "https://youtu.be/rbplp2yJ8sA"
     poster: /assets/uploads/simex-launch-poster.jpg
   - title: Guide for players
     length: 1 min 47 s
     url: "https://youtu.be/563nZ39avxc"
     poster: /assets/uploads/simex-player-guide-poster.jpg
   - title: Guide for facilitators and designers
-    length: 4 min 18 s
-    url: "https://youtu.be/GA07tPy2Jt0"
-    poster: /assets/uploads/simex-facilitator-guide-poster.jpg
+    length: 6 min 02 s
+    url: "https://youtu.be/uN4Dolgsg5E"
+    poster: /assets/uploads/simex-facilitator-guide-v2-poster.jpg
 ---
 Simulation exercises let a team test an emergency plan before it’s needed. They take weeks to design and are hard to run well, and the record of who decided what, and when, is easily lost before the report is written.
 
