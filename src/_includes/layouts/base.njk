@@ -11,13 +11,18 @@
 <meta property="og:title" content="{{ ogTitle or metaTitle }}">
 <meta property="og:description" content="{{ metaDescription }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-{%- if ogImage %}
-<meta property="og:image" content="{{ site.url }}{{ ogImage }}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ site.url }}{{ ogImage }}">
-{%- else %}
-<meta name="twitter:card" content="summary">
+{%- set socialImage = ogImage or '/assets/og/home.png' -%}
+<meta property="og:image" content="{{ site.url }}{{ socialImage }}">
+{%- if socialImage.startsWith('/assets/og/') %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 {%- endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}{{ socialImage }}">
+{%- if not site.preview %}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+{%- endif %}
+<link rel="alternate" type="application/atom+xml" title="{{ site.name }} — Notes" href="{{ site.url }}/notes/feed.xml">
 <link rel="icon" type="image/png" href="/assets/logo-mark.png">
 <link rel="preload" href="/assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v={{ '/assets/css/site.css' | version }}">
@@ -27,12 +32,12 @@
 <header class="wrap top">
   <a class="brand" href="/" aria-label="Present Lab, home"><img src="/assets/logo-lockup-black.png" alt="Present Lab" width="132" height="30"></a>
   <nav class="nav" aria-label="Main">
-    {%- for item in site.nav %}<a href="{{ item.url }}"{% if item.section and item.section == section %} aria-current="page"{% endif %}>{{ item.label }}</a>{% endfor -%}
+    {%- for item in site.nav %}<a href="{{ item.url }}"{% if item.section and item.section == section %} aria-current="{{ 'page' if item.url == page.url else 'true' }}"{% endif %}>{{ item.label }}</a>{% endfor -%}
   </nav>
   <details class="menu">
     <summary>Menu</summary>
     <ul>
-      {%- for item in site.nav %}<li><a href="{{ item.url }}"{% if item.section and item.section == section %} aria-current="page"{% endif %}>{{ item.label }}</a></li>{% endfor -%}
+      {%- for item in site.nav %}<li><a href="{{ item.url }}"{% if item.section and item.section == section %} aria-current="{{ 'page' if item.url == page.url else 'true' }}"{% endif %}>{{ item.label }}</a></li>{% endfor -%}
     </ul>
   </details>
 </header>
@@ -58,7 +63,7 @@
     <nav class="f-nav f-studio" aria-label="Studio">
       <p class="f-lab">Studio</p>
       <ul>
-        <li><a href="/notes/"{% if section == 'notes' %} aria-current="page"{% endif %}>Notes</a></li>
+        <li><a href="/notes/"{% if section == 'notes' %} aria-current="{{ 'page' if page.url == '/notes/' else 'true' }}"{% endif %}>Notes</a></li>
         <li><a href="/#contact">Contact</a></li>
         <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
       </ul>
@@ -66,16 +71,6 @@
     <p class="f-legal">© {{ site.year }} {{ site.name }}. {{ site.legal }}</p>
   </div>
 </footer>
-<script>
-document.addEventListener("click", (event) => {
-  const menu = document.querySelector("details.menu[open]");
-  if (menu && (!menu.contains(event.target) || event.target.closest("a"))) menu.open = false;
-});
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
-  const menu = document.querySelector("details.menu[open]");
-  if (menu) { menu.open = false; menu.querySelector("summary")?.focus(); }
-});
-</script>
+<script src="/assets/js/site.js?v={{ '/assets/js/site.js' | version }}" defer></script>
 </body>
 </html>

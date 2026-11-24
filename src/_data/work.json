@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "where": "The Gambia",
+      "work": "Process audit and multi-year digital roadmap for the African Commission on Human and Peoples’ Rights",
+      "year": "",
+      "with": "EPD, ACHPR",
+      "practice": "ai-digital",
+      "home": true
+    },
+    {
+      "where": "Nigeria",
+      "work": "Rapid preparedness assessment and refresher training at five international airports",
+      "year": "2026",
+      "with": "Port Health Services Division, Federal Ministry of Health and Social Welfare",
+      "practice": "health-security",
+      "home": true
+    },
+    {
+      "where": "Multi-country",
+      "work": "Local Leadership Labs: discovery, co-design and prototyping with civil society",
+      "year": "",
+      "with": "Brave Village",
+      "practice": "social-economic-justice",
+      "home": true
+    },
+    {
+      "where": "Liberia",
+      "work": "Launch of a national Master’s programme in AI, the first of its kind",
+      "year": "",
+      "with": "UNDP, Intel",
+      "practice": "ai-digital",
+      "home": true
+    },
+    {
+      "where": "Nigeria",
+      "work": "Institutional transformation of port health services through the design of public service journey maps, service-level agreements and SOPs",
+      "year": "2026",
+      "with": "Federal Ministry of Health and Social Welfare, the Presidential Enabling Business Environment Council (PEBEC) and the Maritime Anti-Corruption Network",
+      "practice": "health-security",
+      "home": true
+    },
+    {
+      "where": "Multi-country",
+      "work": "Power dynamics and operational practices across seventeen human rights philanthropy organisations",
+      "year": "2025",
+      "with": "Fund for Global Human Rights",
+      "practice": "philanthropy",
+      "home": true
+    },
+    {
+      "where": "Somalia",
+      "work": "Digital fitness and governance programme",
+      "year": "",
+      "with": "UNDP",
+      "practice": "ai-digital",
+      "home": true
+    },
+    {
+      "where": "Nigeria",
+      "work": "Tabletop exercise on biological and chemical emergencies at points of entry, Abuja: design, facilitation and evaluation",
+      "year": "2023",
+      "with": "Port Health Services and the Office of the National Security Adviser",
+      "practice": "health-security",
+      "home": true
+    }
+  ]
+}

@@ -12,6 +12,12 @@
     "social-economic-justice": "Social and Economic Justice",
     philanthropy: "Philanthropy Advisory",
   };
+  var PRACTICE_SHORT = {
+    "ai-digital": "AI and digital",
+    "health-security": "Health security",
+    "social-economic-justice": "Social and economic justice",
+    philanthropy: "Philanthropy",
+  };
 
   function formatDate(value, options) {
     if (!value) return "";
@@ -25,13 +31,42 @@
     return h("div", { key: key || label }, h("dt", null, label), h("dd", null, value));
   }
 
+  function formatReserve(value) {
+    if (!value) return h("span", { className: "tbc" }, "Details to follow");
+    var text = String(value).trim();
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) return h("a", { href: "mailto:" + text }, text);
+    if (/^https?:\/\/\S+$/.test(text)) return h("a", { href: text }, "Reserve a place");
+    return text;
+  }
+
+  function renderFilm(f, getAsset, lead, key) {
+    if (!f || !f.poster) return null;
+    var posterSrc = String(getAsset(f.poster));
+    var hasSource = Boolean(f.video || f.url);
+    return h("figure", { key: key, className: "film" + (lead ? " film--lead" : "") },
+      h("div", { className: "film-play" + (hasSource ? "" : " film-pending") },
+        h("img", { src: posterSrc, alt: "", width: 1600, height: 900 }),
+        h("span", { className: "film-label" },
+          h("span", { className: "film-tri" }),
+          f.title || "Film",
+          f.length ? h("span", { className: "film-len" }, f.length) : null
+        )
+      ),
+      hasSource ? null : h("figcaption", { className: "film-note" },
+        "Preview only: the film plays here once its video file or link is added. Without one, it does not appear on the live site."
+      )
+    );
+  }
+
   var NotePreview = createClass({
     render: function () {
       var entry = this.props.entry;
+      var getAsset = this.props.getAsset;
       var get = function (name) { return entry.getIn(["data", name]); };
       var type = get("type");
       var date = get("date");
       var facts = [];
+      var shownFilms = [];
 
       if (type === "event") {
         var when = formatDate(date, { weekday: "long" }) + " " + formatDate(date, { day: "numeric", month: "long", year: "numeric" });
@@ -41,7 +76,7 @@
         ]));
         facts.push(fact("Where", get("place")));
         facts.push(fact("Places", get("capacity")));
-        facts.push(fact("Reserve", get("reserve") || h("span", { className: "tbc" }, "Details to follow")));
+        facts.push(fact("Reserve", formatReserve(get("reserve"))));
         facts.push(fact("Hosts", get("hosts")));
       } else {
         facts.push(fact("Published", formatDate(date, { month: "long", year: "numeric" })));
@@ -56,8 +91,9 @@
         }
         var rawFilms = get("films");
         var filmItems = rawFilms && rawFilms.toJS ? rawFilms.toJS() : [];
-        if (filmItems.length) {
-          facts.push(fact("Films", filmItems.map(function (f, i) {
+        shownFilms = filmItems.filter(function (f) { return f && f.poster; });
+        if (shownFilms.length) {
+          facts.push(fact("Films", shownFilms.map(function (f, i) {
             return h("span", { key: i, className: "l2" }, (f.title || "Film") + (f.length ? " (" + f.length + ")" : ""));
           })));
         }
@@ -69,17 +105,26 @@
         }
       }
 
-      var practice = PRACTICES[get("practice")];
+      var practiceKey = get("practice");
+      var practice = PRACTICES[practiceKey];
+      var guides = shownFilms.length > 1 ? shownFilms.length - 1 : 0;
+      var guideHeading = guides === 1 ? "one guide" : (guides === 2 ? "two guides" : guides + " guides");
+
       return h("article", { className: "wrap entry" },
         h("div", { className: "grid" },
           h("p", { className: "crumb" }, h("span", null, "Notes"), h("span", { "aria-hidden": "true" }, "/"), h("em", null, TYPES[type] || "")),
           h("h1", null, get("title") || "Untitled note"),
           get("dek") ? h("p", { className: "dek" }, get("dek")) : null
         ),
+        shownFilms.length ? h("div", { className: "grid film-row" }, renderFilm(shownFilms[0], getAsset, true, "film-1")) : null,
         h("div", { className: "grid entry-body" },
           h("dl", { className: "facts" }, facts),
           h("div", { className: "prose" },
             this.props.widgetFor("body"),
+            guides ? h("h2", null, "How it works, in " + guideHeading) : null,
+            guides ? shownFilms.slice(1).map(function (f, idx) {
+              return renderFilm(f, getAsset, false, "film-" + (idx + 2));
+            }) : null,
             practice ? h("p", { className: "filed" }, "Filed under ", h("span", { className: "tl" }, practice)) : null
           )
         )
@@ -123,4 +168,56 @@
   ["ai-digital", "health-security", "social-economic-justice", "philanthropy"].forEach(function (name) {
     CMS.registerPreviewTemplate(name, PracticePreview);
   });
+
+  // Work register: shows the home-page selection and the full list across practices.
+  function renderWorkTable(rows, key) {
+    return h("table", { key: key, className: "reg" },
+      h("thead", null,
+        h("tr", null,
+          h("th", { scope: "col" }, "Where"),
+          h("th", { scope: "col" }, "Work"),
+          h("th", { scope: "col" }, "With"),
+          h("th", { scope: "col" }, "Practice")
+        )
+      ),
+      h("tbody", null, rows.map(function (item, idx) {
+        return h("tr", { key: idx },
+          h("td", { className: "w" }, item.where || ""),
+          h("td", { className: "k" },
+            item.work || "",
+            item.year ? h("span", { className: "y" }, " " + item.year) : null
+          ),
+          h("td", { className: "p" }, item.with || ""),
+          h("td", { className: "r" }, PRACTICE_SHORT[item.practice] || "")
+        );
+      }))
+    );
+  }
+
+  var WorkPreview = createClass({
+    render: function () {
+      var raw = this.props.entry.getIn(["data", "items"]);
+      var items = raw && raw.toJS ? raw.toJS() : [];
+      var homeItems = items.filter(function (w) { return w && w.home; });
+      var practiceOnly = items.filter(function (w) { return w && !w.home; });
+      return h("div", null,
+        h("section", { className: "wrap sec" },
+          h("div", { className: "grid opener" },
+            h("h2", { className: "h2" }, "Where we’ve worked"),
+            h("p", null, "A selection across the four practices (" + homeItems.length + " shown on the home page).")
+          ),
+          renderWorkTable(homeItems, "home"),
+          h("p", { className: "reg-note" }, "Findings and procedures belong to the institutions we support. We publish them only with their agreement.")
+        ),
+        practiceOnly.length ? h("section", { className: "wrap sec" },
+          h("div", { className: "grid opener" },
+            h("h2", { className: "h2" }, "On practice pages only"),
+            h("p", null, "Entries with “Show on the home page” turned off appear only on their practice page.")
+          ),
+          renderWorkTable(practiceOnly, "practice-only")
+        ) : null
+      );
+    },
+  });
+  CMS.registerPreviewTemplate("work-register", WorkPreview);
 })();

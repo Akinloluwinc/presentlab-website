@@ -6,10 +6,12 @@ const infoFor = (data) => site.practices.find((p) => p.slug === data.page.fileSl
 
 export default {
   layout: "layouts/practice.njk",
+  section: "practices",
   eleventyComputed: {
     info: (data) => infoFor(data),
     permalink: (data) => `/${data.page.fileSlug}/`,
     metaTitle: (data) => `${infoFor(data)?.name} — Present Lab`,
     metaDescription: (data) => data.lead,
+    ogImage: (data) => `/assets/og/practices/${data.page.fileSlug}.png`,
   },
 };

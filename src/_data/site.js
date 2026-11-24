@@ -24,7 +24,7 @@ export default {
   },
 
   nav: [
-    { label: "Practices", url: "/#practices" },
+    { label: "Practices", url: "/#practices", section: "practices" },
     { label: "Method", url: "/#method" },
     { label: "Work", url: "/#work" },
     { label: "Notes", url: "/notes/", section: "notes" },
@@ -36,29 +36,51 @@ export default {
     {
       slug: "ai-digital",
       name: "AI and Digital Transformation",
+      shortName: "AI and digital",
       url: "/ai-digital/",
     },
     {
       slug: "health-security",
       name: "Health Security and Biosecurity",
+      shortName: "Health security",
       url: "/health-security/",
     },
     {
       slug: "social-economic-justice",
       name: "Social and Economic Justice",
+      shortName: "Social and economic justice",
       url: "/social-economic-justice/",
     },
     {
       slug: "philanthropy",
       name: "Philanthropy Advisory",
+      shortName: "Philanthropy",
       url: "/philanthropy/",
     },
   ],
 
   // Kinds of note. Keys match the "type" field the editor writes into each note.
   typeList: [
-    { key: "event", label: "Event", plural: "Events", path: "events" },
-    { key: "method", label: "Method", plural: "Methods", path: "methods" },
-    { key: "publication", label: "Publication", plural: "Publications", path: "publications" },
+    {
+      key: "event",
+      label: "Event",
+      plural: "Events",
+      path: "events",
+      description: "Gatherings hosted by Present Lab in Abuja and online, coming up and in the archive.",
+    },
+    {
+      key: "method",
+      label: "Method",
+      plural: "Methods",
+      path: "methods",
+      description: "Diagnostic tools, simulation platforms and working methods developed by Present Lab.",
+    },
+    {
+      key: "publication",
+      label: "Publication",
+      plural: "Publications",
+      path: "publications",
+      description: "Research papers, reports and co-design toolkits published by Present Lab.",
+    },
   ],
 };

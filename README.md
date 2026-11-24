@@ -19,9 +19,12 @@ Netlify, with a notes editor at `/admin/` ([Decap CMS](https://decapcms.org/)).
 | Notes (events, methods, publications), one file each | `src/notes/*.md` |
 | Notes list and the Events, Methods, Publications views | `src/notes.njk`, `src/notes-by-type.njk` |
 | Practice pages, one file each | `src/practices/*.md` (file name = address, e.g. `health-security.md` → `/health-security/`) |
+| Register of work (home selection and practice pages) | `src/_data/work.json`, `src/_includes/partials/work-table.njk` |
 | Page layouts and the note row | `src/_includes/` |
 | Names, contact details, navigation, practice names and addresses | `src/_data/site.js` |
-| Stylesheet, fonts, logos | `src/assets/` |
+| Stylesheet, client script, fonts, logos | `src/assets/` |
+| Open Graph social card generator (`1200×630` PNGs) | `src/_og/cards.js` (written to `_site/assets/og/`) |
+| Atom feed, sitemap, robots.txt | `src/feed.njk`, `src/sitemap.njk`, `src/robots.njk` |
 | Files uploaded through the editor (PDFs) | `src/assets/uploads/` |
 | A looping animation on a note (only the airports methodology note has one) | `src/notes/<note>.11tydata.js`, video and poster in `src/assets/uploads/` |
 | Films on a note (self-hosted MP4s or YouTube/Vimeo links; only the SIMEX note has them) | the note's `films` (Methods → Films in the editor), videos and posters in `src/assets/uploads/`. A film without a video file or link shows only on deploy previews |
@@ -38,6 +41,8 @@ provider installed on the Netlify project (Project configuration → Security �
   to Ready, then Publish. An event stays under "Coming up" until its date has passed, as of the last build.
 - **Practice pages**: the edit, introduction, focus areas and home-page description of each practice.
   A practice's name and address are fixed in `src/_data/site.js`.
+- **Work register**: every entry appears under "Where we've worked" on its practice page; entries with
+  "Show on the home page" turned on also appear in the register on `/`.
 - The editor is pinned to one Decap CMS version in `src/admin/index.html`. Upgrade on a preview first.
 
 The editor publishes to `main`, so a published note is live a couple of minutes later. Drafts live on

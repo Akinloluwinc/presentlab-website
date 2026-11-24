@@ -1,0 +1,29 @@
+{#- Register of work: 4 columns on the home page (showPractice = true), 3 columns on a practice page. -#}
+{% macro workTable(items, showPractice = true, caption = "Selected work by Present Lab") -%}
+<table class="reg{% if not showPractice %} reg--prac{% endif %}" role="table">
+  <caption class="vh">{{ caption }}</caption>
+  <thead role="rowgroup">
+    <tr role="row">
+      <th role="columnheader" scope="col">Where</th>
+      <th role="columnheader" scope="col">Work</th>
+      <th role="columnheader" scope="col">With</th>
+      {%- if showPractice %}
+      <th role="columnheader" scope="col">Practice</th>
+      {%- endif %}
+    </tr>
+  </thead>
+  <tbody role="rowgroup">
+    {%- for item in items %}
+    {%- set prac = item.practice | practice %}
+    <tr role="row">
+      <td role="cell" class="w">{{ item.where | smart }}</td>
+      <td role="cell" class="k">{{ item.work | smart }}{% if item.year %} <span class="y">{{ item.year }}</span>{% endif %}</td>
+      <td role="cell" class="p">{{ item.with | smart }}</td>
+      {%- if showPractice %}
+      <td role="cell" class="r">{% if prac %}<a href="{{ prac.url }}">{{ prac.shortName or prac.name }}</a>{% endif %}</td>
+      {%- endif %}
+    </tr>
+    {%- endfor %}
+  </tbody>
+</table>
+{%- endmacro %}

@@ -192,3 +192,33 @@ collections:
       - { name: health-security, label: Health Security and Biosecurity, file: src/practices/health-security.md, preview_path: health-security/, fields: *practicefields }
       - { name: social-economic-justice, label: Social and Economic Justice, file: src/practices/social-economic-justice.md, preview_path: social-economic-justice/, fields: *practicefields }
       - { name: philanthropy, label: Philanthropy Advisory, file: src/practices/philanthropy.md, preview_path: philanthropy/, fields: *practicefields }
+
+  - name: work
+    label: Work register
+    label_singular: Work register
+    description: Where Present Lab has worked. Every entry appears on its practice page; entries marked "Show on the home page" also appear in the home-page selection.
+    files:
+      - name: work-register
+        label: Where we’ve worked
+        file: src/_data/work.json
+        fields:
+          - label: Assignments
+            name: items
+            widget: list
+            label_singular: assignment
+            summary: "{{fields.where}} · {{fields.work}}"
+            hint: Drag to change the order. Publish findings and partner names only with the institution’s agreement.
+            fields:
+              - { label: Where, name: where, widget: string, hint: "Country or scope, for example: Nigeria, The Gambia, Multi-country" }
+              - { label: Work, name: work, widget: text, hint: "What the assignment was, in one plain phrase or sentence." }
+              - { label: Year, name: year, widget: string, required: false, hint: "Optional, for example: 2026" }
+              - { label: With, name: with, widget: string, hint: "Partner or commissioning institution, for example: UNDP" }
+              - label: Practice
+                name: practice
+                widget: select
+                options:
+                  - { label: AI and Digital Transformation, value: ai-digital }
+                  - { label: Health Security and Biosecurity, value: health-security }
+                  - { label: Social and Economic Justice, value: social-economic-justice }
+                  - { label: Philanthropy Advisory, value: philanthropy }
+              - { label: Show on the home page, name: home, widget: boolean, default: false, required: false, hint: "Turn on to include this assignment in the selected register on the home page." }

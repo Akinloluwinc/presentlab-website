@@ -8,6 +8,6 @@ export default {
     permalink: (data) => `/notes/${data.page.fileSlug}/`,
     metaTitle: (data) => `${data.title} — Notes — Present Lab`,
     metaDescription: (data) => data.dek,
-    ogImage: (data) => data.ogImage || data.films?.[0]?.poster || data.animation?.poster,
+    ogImage: (data) => data.ogImage || data.films?.[0]?.poster || `/assets/og/notes/${data.page.fileSlug}.png`,
   },
 };

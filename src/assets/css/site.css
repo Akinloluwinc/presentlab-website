@@ -38,7 +38,7 @@ img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,dl,dd,figure,blockquote{margin:0}
 ul,ol{padding:0;list-style:none}
 a{color:inherit}
-a:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:2px}
+a:focus-visible,button:focus-visible,summary:focus-visible,video:focus-visible,iframe:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:2px}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .skip{position:absolute;left:var(--m);top:-60px;background:var(--ink);color:var(--paper);padding:10px 14px;z-index:10}
 .skip:focus{top:12px}
@@ -60,10 +60,10 @@ ins{color:var(--ink);text-decoration:underline;text-decoration-color:var(--signa
 .brand img{height:30px;width:auto}
 .nav{display:flex;gap:30px;font-size:17px}
 .nav a{text-decoration:none}
-.nav a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.32em}
+.nav a[aria-current]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.32em}
 @media (hover:hover) and (pointer:fine){
   .nav a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.32em}
-  .nav a[aria-current="page"]:hover{text-decoration-thickness:2px}
+  .nav a[aria-current]:hover{text-decoration-thickness:2px}
 }
 .menu{display:none}
 
@@ -122,9 +122,16 @@ section{scroll-margin-top:24px}
 .reg th:nth-child(2){width:43%}
 .reg th:nth-child(3){width:28%}
 .reg th:nth-child(4){width:16%}
+.reg--prac th:nth-child(1){width:16%}
+.reg--prac th:nth-child(2){width:52%}
+.reg--prac th:nth-child(3){width:32%}
 .reg td{padding:18px 16px 18px 0;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
 .reg td.w{color:var(--ink);font-weight:600}
 .reg td.k{color:var(--ink)}
+.reg td.r a{text-decoration:none}
+@media (hover:hover) and (pointer:fine){
+  .reg td.r a:hover{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+}
 .reg .y{color:var(--ink-2)}
 .reg tr:last-child td{border-bottom:1px solid var(--ink)}
 .reg-note{margin-top:20px;font-size:16px;color:var(--ink-2);max-width:40em}
@@ -284,8 +291,8 @@ section{scroll-margin-top:24px}
 
 /* ---------- One authored moment: the home edit plays once ---------- */
 @media (prefers-reduced-motion:no-preference){
-  .hero del{animation:strike .5s var(--ease) .55s both}
-  .hero ins{animation:insert .6s var(--ease) 1.05s both}
+  html:not(.hero-seen) .hero del{animation:strike .45s var(--ease) .2s both}
+  html:not(.hero-seen) .hero ins{animation:insert .5s var(--ease) .55s both}
   @keyframes strike{
     from{color:var(--ink);text-decoration-color:transparent}
     to{color:var(--struck);text-decoration-color:var(--ink)}
@@ -307,7 +314,7 @@ section{scroll-margin-top:24px}
   .menu summary::-webkit-details-marker{display:none}
   .menu ul{position:absolute;right:0;top:calc(100% + 8px);background:var(--paper);border:1px solid var(--ink);padding:8px 0;min-width:200px;z-index:20;box-shadow:0 12px 28px rgba(0,0,0,.12)}
   .menu li a{display:block;padding:12px 18px;text-decoration:none}
-  .menu li a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.32em}
+  .menu li a[aria-current]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.32em}
   .top{padding-top:14px;padding-bottom:14px}
   .brand{padding:10px 0}
   .brand img{height:24px}
@@ -322,14 +329,15 @@ section{scroll-margin-top:24px}
   .focus h3{font-size:26px}
   .actions .tl,.pbody .tl,.after .tl{display:inline-block;padding:11px 0;margin-top:0}
 
-  .reg thead{display:none}
+  .reg thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
   .reg,.reg tbody{display:block;width:100%}
   .reg tbody{border-top:1px solid var(--ink)}
   .reg tr{display:grid;grid-template-columns:auto 1fr;column-gap:10px;padding:18px 0;border-bottom:1px solid var(--rule)}
   .reg tr:last-child{border-bottom:1px solid var(--ink)}
   .reg td{display:block;padding:0;border:0!important}
   .reg td.w{grid-column:1;grid-row:1;font-size:15px}
-  .reg td.r{grid-column:2;grid-row:1;font-size:15px}
+  .reg--prac td.w{grid-column:1/-1}
+  .reg td.r{grid-column:2;grid-row:1;justify-self:end;text-align:right;font-size:15px}
   .reg td.k{grid-column:1/-1;margin-top:6px;font-size:17px}
   .reg td.p{grid-column:1/-1;margin-top:4px;font-size:15px}
 
@@ -401,4 +409,22 @@ section{scroll-margin-top:24px}
   .film--lead{grid-column:1/-1}
   .film-label{font-size:16px;padding:11px 14px 12px 12px}
   .announce .tl{white-space:normal}
+}
+
+/* ---------- Print: clean briefing pages without ink waste ---------- */
+@media print{
+  :root{--m:0px}
+  body{font-size:11.5pt;line-height:1.5;color:#000;background:#fff}
+  .skip,.nav,.menu,.actions,.filter,.more,.ask,.f-nav,.anim-toggle,.film-tri{display:none!important}
+  .hero del,.hero ins{animation:none!important}
+  .top{padding:0 0 14pt;border-bottom:1pt solid #000}
+  .hero,.phead,.entry{padding-top:18pt;padding-bottom:18pt}
+  .sec,.close{padding-top:24pt}
+  .yr h2{position:static}
+  .question{background:none;color:#000;margin-top:24pt;border-top:1pt solid #000;border-bottom:1pt solid #000}
+  .question .wrap{padding-top:18pt;padding-bottom:18pt}
+  .question figcaption{color:var(--ink-2)}
+  .prac,.note,.focus li,.facts div,figure,tr{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  .foot{padding-top:18pt;padding-bottom:0}
 }

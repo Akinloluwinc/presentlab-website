@@ -10,7 +10,7 @@ focus:
   - title: AI in public institutions
     text: "Where AI and other emerging methods can serve health security and governance in West Africa, and where a system would import surveillance that an institution has no mandate to hold."
   - title: Institutional AI orchestration
-    text: "We design and deploy orchestration layers that connect AI models, agents and tools to an institution's own systems and data, under its own rules: who can use what, which steps need human approval, and a record of what was done."
+    text: "We design and deploy orchestration layers that connect AI models, agents and tools to an institution’s own systems and data, under its own rules: who can use what, which steps need human approval, and a record of what was done."
   - title: Capability that stays
     text: "Curriculum, training and transfer, so that institutions build the skills they need instead of renting them for good."
   - title: Services that work in real conditions

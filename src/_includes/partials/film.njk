@@ -8,12 +8,12 @@
 <figure class="film{% if lead %} film--lead{% endif %}"{% if id %} id="{{ id }}"{% endif %}>
   {%- if href %}
   <a class="film-play" href="{{ href }}"{% if f.video %} data-video="{{ f.video }}" data-poster="{{ f.poster }}"{% endif %}{% if embed %} data-embed="{{ embed }}"{% endif %} aria-label="Play {{ f.title | lower }}, {{ f.length }}">
-    <img src="{{ f.poster }}" alt="" width="1600" height="900" decoding="async">
+    <img src="{{ f.poster }}" alt="" width="1600" height="900"{% if lead %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async">
     <span class="film-label" aria-hidden="true"><span class="film-tri"></span>{{ f.title }}<span class="film-len">{{ f.length }}</span></span>
   </a>
   {%- else %}
   <div class="film-play film-pending">
-    <img src="{{ f.poster }}" alt="" width="1600" height="900" decoding="async">
+    <img src="{{ f.poster }}" alt="" width="1600" height="900"{% if lead %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async">
     <span class="film-label"><span class="film-tri"></span>{{ f.title }}<span class="film-len">{{ f.length }}</span></span>
   </div>
   <figcaption class="film-note">Preview only: the film plays here once its video file or link is added. Without one, it does not appear on the live site.</figcaption>

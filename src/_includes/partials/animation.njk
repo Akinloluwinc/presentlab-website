@@ -7,17 +7,3 @@
   </video>
   <figcaption id="anim-cap">{{ animation.caption }} <button type="button" class="anim-toggle" id="anim-toggle" hidden>Play</button></figcaption>
 </figure>
-<script>
-(() => {
-  const video = document.getElementById("anim-video");
-  const button = document.getElementById("anim-toggle");
-  if (!video || !button) return;
-  const label = () => { button.textContent = video.paused ? "Play" : "Pause"; };
-  video.addEventListener("play", label);
-  video.addEventListener("pause", label);
-  button.addEventListener("click", () => (video.paused ? video.play() : video.pause()));
-  button.hidden = false;
-  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) video.play().catch(label);
-  label();
-})();
-</script>

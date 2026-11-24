@@ -3,6 +3,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, statSync } from "node:fs";
 import site from "./src/_data/site.js";
+import { writeOgCards } from "./src/_og/cards.js";
 
 const dateFormat = (options) => new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", ...options });
 const formats = {
@@ -28,15 +29,26 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
 
+  const ogState = { practices: [], notes: [] };
+
   // The four practice pages, in the order set on each page.
-  eleventyConfig.addCollection("practices", (api) =>
-    api.getFilteredByGlob("src/practices/*.md").sort((a, b) => a.data.order - b.data.order),
-  );
+  eleventyConfig.addCollection("practices", (api) => {
+    ogState.practices = api.getFilteredByGlob("src/practices/*.md").sort((a, b) => a.data.order - b.data.order);
+    return ogState.practices;
+  });
 
   // Every note, newest first.
-  eleventyConfig.addCollection("notes", (api) =>
-    api.getFilteredByGlob("src/notes/*.md").sort((a, b) => b.date - a.date || a.data.title.localeCompare(b.data.title)),
-  );
+  eleventyConfig.addCollection("notes", (api) => {
+    ogState.notes = api
+      .getFilteredByGlob("src/notes/*.md")
+      .sort((a, b) => b.date - a.date || a.data.title.localeCompare(b.data.title));
+    return ogState.notes;
+  });
+
+  // Build 1200x630 typographic Open Graph social cards into _site/assets/og/.
+  eleventyConfig.on("eleventy.after", async ({ dir }) => {
+    await writeOgCards({ outputDir: dir.output, site, practices: ogState.practices, notes: ogState.notes });
+  });
 
   // Dates, always in UTC so a note's date never shifts by a day.
   for (const [name, format] of Object.entries(formats)) eleventyConfig.addFilter(name, (date) => format.format(date));
@@ -68,6 +80,9 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("others", (notes, url, count = 2) => notes.filter((n) => n.url !== url).slice(0, count));
   eleventyConfig.addFilter("filedUnder", (notes, slug) => notes.filter((n) => n.data.practice === slug));
+  eleventyConfig.addFilter("homeWork", (items) => (items || []).filter((w) => w && w.home));
+  eleventyConfig.addFilter("workForPractice", (items, slug) => (items || []).filter((w) => w && w.practice === slug));
+  eleventyConfig.addFilter("smart", (value) => String(value || "").replace(/(\w)'(\w)/g, "$1’$2"));
   // Puts a block of HTML after the first paragraph of a note's text (at the end if there is none).
   eleventyConfig.addFilter("afterFirstParagraph", (html, block) => {
     const text = String(html || "");
@@ -130,7 +145,16 @@ export default function (eleventyConfig) {
     }
   });
 
-  // Gives the stylesheet a new address whenever it changes, so browsers never keep an old copy.
+  // Proper book quotes, apostrophes and dashes in Markdown notes.
+  eleventyConfig.amendLibrary("md", (md) => md.set({ typographer: true }));
+
+  // Full ISO timestamp and absolute URLs for the Atom feed.
+  eleventyConfig.addFilter("isoDateTime", (date) => date.toISOString());
+  eleventyConfig.addFilter("absUrls", (html) =>
+    String(html || "").replace(/\b(href|src|poster)="\/(?!\/)/g, `$1="${site.url}/`),
+  );
+
+  // Gives static assets a new address whenever they change, so browsers never keep an old copy.
   eleventyConfig.addFilter("version", (path) =>
     createHash("sha1").update(readFileSync(`src${path}`)).digest("hex").slice(0, 10),
   );

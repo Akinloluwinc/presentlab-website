@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 ---
 {%- from "partials/note-row.njk" import noteRow -%}
+{%- from "partials/work-table.njk" import workTable -%}
 <article class="wrap entry pp" aria-labelledby="h-practice">
   <div class="grid">
     <p class="crumb"><a class="tl" href="/#practices">Practices</a></p>
@@ -31,6 +32,18 @@ layout: layouts/base.njk
     <div class="prose">{{ content | safe }}</div>
   </div>
   {%- endif %}
+</section>
+{%- endif %}
+
+{%- set practiceWork = work.items | workForPractice(page.fileSlug) %}
+{%- if practiceWork.length %}
+<section class="wrap sec" id="work" aria-labelledby="h-practice-work">
+  <div class="grid opener">
+    <h2 id="h-practice-work" class="h2">Where we’ve worked</h2>
+    <p>Assignments and institutional partnerships in this practice.</p>
+  </div>
+  {{ workTable(practiceWork, false, "Work in " ~ info.name) }}
+  <p class="reg-note">Findings and procedures belong to the institutions we support. We publish them only with their agreement.</p>
 </section>
 {%- endif %}
 
