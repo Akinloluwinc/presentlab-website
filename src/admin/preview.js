@@ -48,6 +48,19 @@
         facts.push(fact("Version", get("version")));
         facts.push(fact("Authors", get("authors")));
         facts.push(fact("Commissioned by", get("commissioned_by")));
+        if (get("app")) {
+          facts.push(fact("Runs at", String(get("app")).replace(/^https?:\/\//, "")));
+        }
+        if (get("demo")) {
+          facts.push(fact("Try it", "Explore the synthetic demo"));
+        }
+        var rawFilms = get("films");
+        var filmItems = rawFilms && rawFilms.toJS ? rawFilms.toJS() : [];
+        if (filmItems.length) {
+          facts.push(fact("Films", filmItems.map(function (f, i) {
+            return h("span", { key: i, className: "l2" }, (f.title || "Film") + (f.length ? " (" + f.length + ")" : ""));
+          })));
+        }
         if (get("file") || get("link")) {
           facts.push(fact("Read it", [
             get("file") ? h("span", { key: "f", className: "l2" }, "Download the PDF") : null,

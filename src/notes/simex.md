@@ -6,17 +6,21 @@ practice: health-security
 dek: "Design, run and evaluate a simulation exercise to the WHO standard, in the room or online, with a record of every action and decision. Open for testing."
 version: Pilot, open for testing
 app: https://simex.presentlab.org
+demo: https://simex.presentlab.org/demo
 films:
   - title: The launch film
     length: 1 min 35 s
+    video: /assets/uploads/simex-launch-v2.mp4
     url: "https://youtu.be/rbplp2yJ8sA"
     poster: /assets/uploads/simex-launch-poster.jpg
   - title: Guide for players
-    length: 1 min 47 s
+    length: 2 min 02 s
+    video: /assets/uploads/simex-player-guide-v2.mp4
     url: "https://youtu.be/563nZ39avxc"
     poster: /assets/uploads/simex-player-guide-poster.jpg
   - title: Guide for facilitators and designers
     length: 6 min 02 s
+    video: /assets/uploads/simex-facilitator-guide-v2.mp4
     url: "https://youtu.be/uN4Dolgsg5E"
     poster: /assets/uploads/simex-facilitator-guide-v2-poster.jpg
 ---
@@ -26,11 +30,11 @@ We built SIMEX to help with all of that. It follows the WHO Simulation Exercise 
 
 ## Design
 
-You start from one of six exercise templates, each a complete synthetic scenario: sub-national outbreak response, airport point of entry, seaport and ground crossing, national multi-sectoral response (One Health), regional information sharing, and deliberate events where health and security meet. Ten guided steps cover the purpose, the objectives and the IHR core capacities they test, the roles, the injects, the decision points and the evaluation criteria. SIMEX checks the design and produces the WHO exercise documents: concept note, exercise plan, master scenario events list, evaluation plan, facilitator guide and participant handbooks.
+You start from one of six exercise templates, each a complete synthetic scenario: sub-national outbreak response, airport point of entry, seaport and ground crossing, national multi-sectoral response (One Health), regional information sharing, and deliberate events where health and security meet. Ten guided steps cover the purpose, the objectives and the IHR core capacities they test, the roles, the injects, the decision points and the evaluation criteria. Drafts save to your team’s workspace so co-designers can work together, and you can preview any role’s phone or laptop view before play begins. SIMEX checks the design and produces the WHO exercise documents: concept note, exercise plan, master scenario events list, evaluation plan, facilitator guide and participant handbooks.
 
 ## Run
 
-The facilitator runs the exercise from one console, in the room or online. Participants join from their own phones or laptops with a private link. They don’t need an account, and they see only their own role. Every release, action and decision is recorded against the exercise clock, with the reason given for it.
+The lead facilitator runs the exercise from one console, in the room or online. For exercises in a room, a projector screen can pair with a short code to show the exercise clock, released injects and open decisions without exposing facilitator prompts or what comes next, and a scribe can record spoken actions and stage decisions from a separate keyboard view. Participants on phones or laptops join with a private link: they don’t need an account, and they see only their own role. Every release, action, amendment and decision is recorded against the exercise clock, with who recorded it and the reason given.
 
 ## Evaluate
 
@@ -46,4 +50,4 @@ SIMEX isn’t a certification, an IHR assessment or a substitute for an experien
 
 ## Taking part in testing
 
-We’re looking for teams that plan or run exercises, such as ministries of health, emergency operations centres, point-of-entry authorities and their partners. We’ll run a practice exercise with you and ask what works, what doesn’t and what’s missing. During testing we set up each exercise with you, and participants join with the link they’re sent. To take part, write to [info@presentlab.org](mailto:info@presentlab.org?subject=Testing%20SIMEX).
+You can [explore a completed synthetic airport exercise](https://simex.presentlab.org/demo) in your browser without an account. We’re looking for teams that plan or run exercises — ministries of health, emergency operations centres, point-of-entry authorities and their partners — to run a practice exercise with us and tell us what works, what doesn’t and what’s missing. During testing we set up a private workspace for your facilitation team, and participants join with the link they’re sent. To take part, write to [info@presentlab.org](mailto:info@presentlab.org?subject=Testing%20SIMEX).

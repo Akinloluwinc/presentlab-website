@@ -116,16 +116,18 @@ collections:
       - &pdf { label: PDF, name: file, widget: file, required: false, hint: "Upload the document if it can be shared publicly." }
       - &link { label: Link, name: link, widget: string, required: false, hint: "Where to read it online, if it lives elsewhere. Starts with https://", pattern: ['^https?://', 'Start the link with https://'] }
       - { label: Runs at, name: app, widget: string, required: false, hint: "The address of a tool, if the method has one, for example https://simex.presentlab.org", pattern: ['^https?://', 'Start the address with https://'] }
+      - { label: Demo link, name: demo, widget: string, required: false, hint: "Optional public walkthrough or synthetic demo address, for example https://simex.presentlab.org/demo", pattern: ['^(https?://.*)?$', 'Start the address with https://'] }
       - label: Films
         name: films
         widget: list
         required: false
-        hint: "The first film plays at the top of the page; the others appear under the text. A film without a link shows only on previews, never on the live site."
+        hint: "The first film plays at the top of the page; the others appear under the text. Upload an MP4 file for direct playback, or add a YouTube/Vimeo link."
         summary: "{{fields.title}} ({{fields.length}})"
         fields:
           - { label: Title, name: title, widget: string, hint: "For example: The launch film" }
-          - { label: Length, name: length, widget: string, hint: "For example: 1 min 23 s" }
-          - { label: Link, name: url, widget: string, required: false, hint: "The YouTube or Vimeo link (it plays on the page without tracking cookies). Leave empty until the film is uploaded.", pattern: ['^(https?://.*)?$', 'Start the link with https://'] }
+          - { label: Length, name: length, widget: string, hint: "For example: 1 min 35 s" }
+          - { label: Video file, name: video, widget: file, required: false, hint: "Self-hosted MP4 in /assets/uploads/ (preferred; plays directly with no external embed)." }
+          - { label: External link, name: url, widget: string, required: false, hint: "Optional YouTube or Vimeo fallback link.", pattern: ['^(https?://.*)?$', 'Start the link with https://'] }
           - { label: Poster, name: poster, widget: image, hint: "A still from the film, 16:9, about 1600 × 900 pixels." }
       - *body
 

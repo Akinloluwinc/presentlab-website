@@ -24,7 +24,7 @@ Netlify, with a notes editor at `/admin/` ([Decap CMS](https://decapcms.org/)).
 | Stylesheet, fonts, logos | `src/assets/` |
 | Files uploaded through the editor (PDFs) | `src/assets/uploads/` |
 | A looping animation on a note (only the airports methodology note has one) | `src/notes/<note>.11tydata.js`, video and poster in `src/assets/uploads/` |
-| Films on a note (YouTube or Vimeo links; only the SIMEX note has them) | the note's `films` (Methods → Films in the editor), posters in `src/assets/uploads/`. A film without a link shows only on deploy previews |
+| Films on a note (self-hosted MP4s or YouTube/Vimeo links; only the SIMEX note has them) | the note's `films` (Methods → Films in the editor), videos and posters in `src/assets/uploads/`. A film without a video file or link shows only on deploy previews |
 | The editor: settings and preview | `src/admin/config.yml`, `src/admin/preview.js` |
 | Build settings | `eleventy.config.js`, `netlify.toml` |
 

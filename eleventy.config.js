@@ -115,8 +115,10 @@ export default function (eleventyConfig) {
     if (m) return `https://player.vimeo.com/video/${m[1]}?autoplay=1&dnt=1`;
     return "";
   });
-  // Films to show: those with a link, plus (in previews only) those still waiting for one.
-  eleventyConfig.addFilter("filmsToShow", (films, preview) => (films || []).filter((f) => f && f.poster && (f.url || preview)));
+  // Films to show: those with a video file or link, plus (in previews only) those still waiting for one.
+  eleventyConfig.addFilter("filmsToShow", (films, preview) =>
+    (films || []).filter((f) => f && f.poster && (f.video || f.url || preview)),
+  );
 
   // The size of a file in src/, for download links ("8.8 MB"). Empty if the file is missing.
   eleventyConfig.addFilter("fileSize", (path) => {

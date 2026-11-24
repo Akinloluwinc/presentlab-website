@@ -11,7 +11,13 @@
 <meta property="og:title" content="{{ ogTitle or metaTitle }}">
 <meta property="og:description" content="{{ metaDescription }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+{%- if ogImage %}
+<meta property="og:image" content="{{ site.url }}{{ ogImage }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}{{ ogImage }}">
+{%- else %}
 <meta name="twitter:card" content="summary">
+{%- endif %}
 <link rel="icon" type="image/png" href="/assets/logo-mark.png">
 <link rel="preload" href="/assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v={{ '/assets/css/site.css' | version }}">
@@ -60,5 +66,16 @@
     <p class="f-legal">© {{ site.year }} {{ site.name }}. {{ site.legal }}</p>
   </div>
 </footer>
+<script>
+document.addEventListener("click", (event) => {
+  const menu = document.querySelector("details.menu[open]");
+  if (menu && (!menu.contains(event.target) || event.target.closest("a"))) menu.open = false;
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  const menu = document.querySelector("details.menu[open]");
+  if (menu) { menu.open = false; menu.querySelector("summary")?.focus(); }
+});
+</script>
 </body>
 </html>

@@ -19,7 +19,7 @@ layout: layouts/base.njk
   </div>
   {%- if shownFilms.length %}
   <div class="grid film-row">
-    {{ film(shownFilms[0], true) }}
+    {{ film(shownFilms[0], true, "film-1") }}
   </div>
   {%- endif %}
   <div class="grid entry-body">
@@ -50,9 +50,12 @@ layout: layouts/base.njk
       {%- if app %}
       <div><dt>Runs at</dt><dd><a href="{{ app }}">{{ app | replace("https://", "") }}</a></dd></div>
       {%- endif %}
+      {%- if demo %}
+      <div><dt>Try it</dt><dd><a href="{{ demo }}">Explore the synthetic demo</a></dd></div>
+      {%- endif %}
       {%- if shownFilms.length %}
       <div><dt>Films</dt><dd>
-        {%- for f in shownFilms %}<span class="l2">{% if f.url %}<a href="{{ f.url }}">{{ f.title }}</a>{% else %}{{ f.title }}{% endif %} <span class="fsize">({{ f.length }})</span></span>{% endfor -%}
+        {%- for f in shownFilms %}<span class="l2">{% if f.video or f.url %}<a href="#film-{{ loop.index }}" data-film-jump="film-{{ loop.index }}">{{ f.title }}</a>{% else %}{{ f.title }}{% endif %} <span class="fsize">({{ f.length }})</span></span>{% endfor -%}
       </dd></div>
       {%- endif %}
       {%- if file or link %}
@@ -67,9 +70,9 @@ layout: layouts/base.njk
       {{ content | safe }}
       {%- if shownFilms.length > 1 %}
       {%- set guides = shownFilms.length - 1 %}
-      <h2>How it works, in {{ "a short film" if guides == 1 else ("two short films" if guides == 2 else guides ~ " short films") }}</h2>
+      <h2>How it works, in {{ "one guide" if guides == 1 else ("two guides" if guides == 2 else guides ~ " guides") }}</h2>
       {%- for f in shownFilms %}{% if not loop.first %}
-      {{ film(f) }}
+      {{ film(f, false, "film-" ~ loop.index) }}
       {%- endif %}{% endfor %}
       {%- endif %}
       {%- if practiceInfo %}
@@ -97,19 +100,59 @@ layout: layouts/base.njk
 <p class="wrap ask">To ask about anything here, write to <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
 {%- if shownFilms.length %}
 <script>
-// A film's poster becomes its player when clicked (YouTube and Vimeo links only).
-document.addEventListener("click", (event) => {
-  const link = event.target.closest("a.film-play[data-embed]");
-  if (!link) return;
-  event.preventDefault();
-  const frame = document.createElement("iframe");
-  frame.src = link.dataset.embed;
-  frame.title = link.getAttribute("aria-label") || "Film";
-  frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-  frame.allowFullscreen = true;
-  frame.className = "film-frame";
-  link.replaceWith(frame);
-  frame.focus();
-});
+// A film's poster becomes its player when clicked: native HTML5 video first, cookie-free embed if needed.
+(() => {
+  const makeEmbed = (link) => {
+    const frame = document.createElement("iframe");
+    frame.src = link.dataset.embed;
+    frame.title = link.getAttribute("aria-label") || "Film";
+    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen = true;
+    frame.className = "film-frame";
+    return frame;
+  };
+  const playFilm = (link) => {
+    if (link.dataset.video) {
+      const video = document.createElement("video");
+      video.className = "film-frame";
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      if (link.dataset.poster) video.poster = link.dataset.poster;
+      video.setAttribute("aria-label", link.getAttribute("aria-label") || "Film");
+      if (link.dataset.embed) {
+        video.addEventListener("error", () => { video.replaceWith(makeEmbed(link)); }, { once: true });
+      }
+      video.src = link.dataset.video;
+      link.replaceWith(video);
+      video.play().catch(() => {});
+      video.focus();
+      return;
+    }
+    if (link.dataset.embed) {
+      const frame = makeEmbed(link);
+      link.replaceWith(frame);
+      frame.focus();
+    }
+  };
+  document.addEventListener("click", (event) => {
+    const jump = event.target.closest("a[data-film-jump]");
+    if (jump) {
+      const fig = document.getElementById(jump.dataset.filmJump);
+      if (!fig) return;
+      event.preventDefault();
+      fig.scrollIntoView({ behavior: "smooth", block: "center" });
+      const link = fig.querySelector("a.film-play[data-video], a.film-play[data-embed]");
+      if (link) { playFilm(link); return; }
+      const video = fig.querySelector("video.film-frame");
+      if (video) { video.play().catch(() => {}); video.focus(); }
+      return;
+    }
+    const link = event.target.closest("a.film-play[data-video], a.film-play[data-embed]");
+    if (!link) return;
+    event.preventDefault();
+    playFilm(link);
+  });
+})();
 </script>
 {%- endif %}
