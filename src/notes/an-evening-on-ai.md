@@ -5,6 +5,7 @@ date: 2026-12-05
 practice: ai-digital
 dek: "An evening of conversation about what AI means for our work and institutions in Nigeria, open to everyone."
 place: Garki, Abuja
+time: 5 pm to 9 pm
 capacity: Thirty guests
 reserve: https://forms.gle/h2mBRCFL8YBVq3Ne9
 ---
@@ -12,4 +13,4 @@ This is Present Lab’s first gathering: a small, informal evening about AI and 
 
 There will be food and drinks. You don’t need a technical background.
 
-Places are limited to thirty guests. We’ll add the start time here once it’s confirmed.
+Places are limited to thirty guests.
