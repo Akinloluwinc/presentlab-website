@@ -6,7 +6,7 @@ practice: ai-digital
 dek: "An evening of conversation about what AI means for our work and institutions in Nigeria, open to everyone."
 place: Garki, Abuja
 capacity: Thirty guests
-reserve: info@presentlab.org
+reserve: https://forms.gle/h2mBRCFL8YBVq3Ne9
 ---
 This is Present Lab’s first gathering: a small, informal evening about AI and the work of Nigerian institutions. We’ll talk about where AI is useful, where it needs care, and what practical choices and responsible use look like.
 
