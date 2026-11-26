@@ -64,6 +64,16 @@ layout: layouts/base.njk
         {%- if link %}<span class="l2"><a href="{{ link }}">Read online</a></span>{% endif -%}
       </dd></div>
       {%- endif %}
+      {%- if extraFacts and extraFacts.length %}
+      {%- for item in extraFacts %}
+      <div><dt>{{ item.label }}</dt><dd>
+        {%- if item.file %}{% set size = item.file | fileSize %}<span class="l2"><a href="{{ item.file }}">{{ item.linkText or 'Download the PDF' }}</a>{% if size %} <span class="fsize">({{ size }})</span>{% endif %}</span>
+        {%- elif item.href %}<span class="l2"><a href="{{ item.href }}">{{ item.linkText }}</a>{% if item.meta %} <span class="fsize">({{ item.meta }})</span>{% endif %}</span>
+        {%- elif item.text %}{{ item.text }}{% endif %}
+        {%- if item.note %}<span class="tbc">{{ item.note }}</span>{% endif -%}
+      </dd></div>
+      {%- endfor %}
+      {%- endif %}
       {%- endif %}
     </dl>
     <div class="prose">
